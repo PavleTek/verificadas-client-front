@@ -1,0 +1,764 @@
+<div class="grid" *ngIf="girl !== undefined">
+  <p-toast></p-toast>
+  <div class="col-12">
+    <div class="grid">
+      <div class="col-12 md:col-6 lg:col-3 p-3">
+        <div class="p-3 text-center bg-blue-500 border-round">
+          <span class="inline-flex justify-content-center align-items-center bg-blue-600 border-circle mb-3 p-3">
+            <i class="pi pi-pencil text-xl text-white"></i>
+          </span>
+          <div class="text-2xl font-medium text-white mb-2">Nombre</div>
+          <input type="text" class="text-900 font-medium mb-2 p-inputtext-sm" pInputText [(ngModel)]="girl.name" />
+        </div>
+      </div>
+      <div class="col-12 md:col-6 lg:col-3 p-3">
+        <div class="p-3 text-center bg-green-600 border-round">
+          <span class="inline-flex justify-content-center align-items-center bg-green-700 border-circle mb-3 p-3">
+            <i class="pi pi-whatsapp text-xl text-white"></i>
+          </span>
+          <div class="text-2xl font-medium text-white mb-2">Numero Whatsapp</div>
+          <p-inputMask mask="+99 999999999" [(ngModel)]="girl.phoneNumber" placeholder="+56 9xxxxxxxx"></p-inputMask>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 lg:col-3 p-3">
+        <div class="p-3 text-center bg-indigo-500 border-round">
+          <span class="inline-flex justify-content-center align-items-center bg-indigo-600 border-circle mb-3 p-3">
+            <i class="pi pi-flag-fill text-xl text-white"></i>
+          </span>
+          <div class="text-2xl font-medium text-white mb-2">Nacionalidad</div>
+          <p-dropdown
+            [options]="allNationalities"
+            [(ngModel)]="girl.nationality"
+            placeholder="Select a nationality"
+            [editable]="true"
+            optionLabel="name"
+          ></p-dropdown>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 lg:col-3 p-3">
+        <div class="p-3 text-center bg-orange-500 border-round">
+          <span class="inline-flex justify-content-center align-items-center bg-orange-600 border-circle mb-3 p-3">
+            <i class="pi pi-user text-xl text-white"></i>
+          </span>
+          <div class="text-2xl font-medium text-white mb-2">Etnicidad</div>
+          <p-dropdown
+            [options]="allEthnicities"
+            [(ngModel)]="girl.ethnicity"
+            placeholder="Seleccione etnicidad"
+            [editable]="true"
+            optionLabel="name"
+          ></p-dropdown>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 lg:col-6">
+    <div class="shadow-2 surface-card border-round p-3">
+      <div class="flex align-items-center justify-content-between">
+        <span class="text-xl font-medium text-900">Precios</span>
+      </div>
+      <div class="mt-3">
+        <div class="grid">
+          <div class="col-12 md:col-6 text-center">
+            <div class="text-center border-1 surface-border border-round p-4">
+              <i class="pi pi-info-circle text-5xl text-gray-300"></i>
+              <div class="text-900 text-2xl font-700 my-3 font-bold">Información</div>
+              <span class="font-medium text-600"
+                >Los precios que se dejen en 0 no serán visibles en su perfil. El precio de una hora es el que determinará si se le asigna la categoría gold,
+                silver o bronze a su perfil.</span
+              >
+            </div>
+          </div>
+          <div class="col-12 md:col-6">
+            <div class="text-center border-1 surface-border border-round p-4">
+              <i class="pi pi-clock text-5xl text-green-300"></i>
+              <div class="text-900 text-2xl font-700 my-3 font-bold">30 Minutos:</div>
+              <p-inputNumber
+                inputId="integeronly"
+                [(ngModel)]="girl.sessionPrices.halfHourPrice"
+                suffix=" CLP"
+                [showButtons]="true"
+                buttonLayout="horizontal"
+                inputId="horizontal"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+                [step]="10000"
+              ></p-inputNumber>
+            </div>
+          </div>
+          <div class="col-12 md:col-6 text-center">
+            <div class="text-center border-1 surface-border border-round p-4">
+              <i class="pi pi-clock text-5xl text-yellow-600"></i>
+              <div class="text-900 text-2xl font-700 my-3 font-bold">1 Hora:</div>
+              <p-inputNumber
+                inputId="integeronly"
+                [(ngModel)]="girl.sessionPrices.oneHourPrice"
+                suffix=" CLP"
+                [showButtons]="true"
+                buttonLayout="horizontal"
+                inputId="horizontal"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+                [step]="10000"
+              ></p-inputNumber>
+            </div>
+          </div>
+          <div class="col-12 md:col-6 text-center">
+            <div class="text-center border-1 surface-border border-round p-4">
+              <i class="pi pi-clock text-5xl text-cyan-300"></i>
+              <div class="text-900 text-2xl font-700 my-3 font-bold">1 Hora y media:</div>
+              <p-inputNumber
+                inputId="integeronly"
+                [(ngModel)]="girl.sessionPrices.oneAndAHalfHourPrice"
+                suffix=" CLP"
+                [showButtons]="true"
+                [step]="10000"
+                buttonLayout="horizontal"
+                inputId="horizontal"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+              ></p-inputNumber>
+            </div>
+          </div>
+          <div class="col-12 md:col-6 text-center">
+            <div class="text-center border-1 surface-border border-round p-4">
+              <i class="pi pi-clock text-5xl text-pink-400"></i>
+              <div class="text-900 text-2xl font-700 my-3 font-bold">2 Horas:</div>
+              <p-inputNumber
+                inputId="integeronly"
+                [(ngModel)]="girl.sessionPrices.twoHourPrice"
+                suffix=" CLP"
+                [showButtons]="true"
+                [step]="10000"
+                buttonLayout="horizontal"
+                inputId="horizontal"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+              ></p-inputNumber>
+            </div>
+          </div>
+          <div class="col-12 md:col-6 text-center">
+            <div class="text-center border-1 surface-border border-round p-4">
+              <i class="pi pi-clock text-5xl text-indigo-400"></i>
+              <div class="text-900 text-2xl font-700 my-3 font-bold">4 Horas:</div>
+              <p-inputNumber
+                inputId="integeronly"
+                [(ngModel)]="girl.sessionPrices.fourHourPrice"
+                suffix=" CLP"
+                [showButtons]="true"
+                buttonLayout="horizontal"
+                inputId="horizontal"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+                [step]="100000"
+              ></p-inputNumber>
+            </div>
+          </div>
+          <div class="col-12 md:col-6 text-center">
+            <div class="text-center border-1 surface-border border-round p-4">
+              <i class="pi pi-moon text-5xl text-red-700"></i>
+              <div class="text-900 text-2xl font-700 my-3 font-bold">Cena:</div>
+              <p-inputNumber
+                inputId="integeronly"
+                [(ngModel)]="girl.sessionPrices.dinnerPrice"
+                suffix=" CLP"
+                [showButtons]="true"
+                [step]="100000"
+                buttonLayout="horizontal"
+                inputId="horizontal"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+              ></p-inputNumber>
+            </div>
+          </div>
+          <div class="col-12 md:col-6 text-center">
+            <div class="text-center border-1 surface-border border-round p-4">
+              <i class="pi pi-moon text-5xl text-cyan-900"></i>
+              <div class="text-900 text-2xl font-700 my-3 font-bold">Noche Completa:</div>
+              <p-inputNumber
+                inputId="integeronly"
+                [(ngModel)]="girl.sessionPrices.wholeNight"
+                suffix=" CLP"
+                [showButtons]="true"
+                [step]="100000"
+                buttonLayout="horizontal"
+                inputId="horizontal"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+              ></p-inputNumber>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 lg:col-6">
+    <div class="grid">
+      <div class="col-12">
+        <div class="surface-card shadow-2 border-round p-4">
+          <div class="flex align-items-center justify-content-between mb-4">
+            <span class="text-xl font-medium text-900">Ubicaciones</span>
+          </div>
+          <ul class="mt-4 list-none p-0 mx-0">
+            <li class="flex align-items-center py-3">
+              <span style="width: 1rem; height: 1rem" class="border-round bg-cyan-500 mr-3 flex-shrink-0"></span>
+              <span class="text-xl font-medium text-90">Ciudad</span>
+              <div class="ml-auto">
+                <p-dropdown [options]="allCities" [(ngModel)]="girl.city" placeholder="Seleccione ciudad" [editable]="true" optionLabel="name"></p-dropdown>
+              </div>
+            </li>
+            <li class="flex align-items-center pb-3">
+              <span style="width: 1rem; height: 1rem" class="border-round bg-indigo-500 mr-3 flex-shrink-0"></span>
+              <span class="text-xl font-medium text-90">Ubicación Específica</span>
+              <div class="ml-auto">
+                <p-dropdown
+                  [options]="allSpecificLocations"
+                  [(ngModel)]="girl.specificLocation"
+                  placeholder="Seleccione ubicación específica"
+                  [editable]="true"
+                  optionLabel="name"
+                ></p-dropdown>
+              </div>
+            </li>
+            <li class="flex align-items-center py-3">
+              <span style="width: 1rem; height: 1rem" class="border-round bg-orange-500 mr-3 flex-shrink-0"></span>
+              <span class="text-xl font-medium text-90">Atencion en Hoteles?</span>
+              <div class="ml-auto"><p-inputSwitch [(ngModel)]="girl.attributes.attentionAtHotels"></p-inputSwitch></div>
+            </li>
+            <li class="flex align-items-center py-3">
+              <span style="width: 1rem; height: 1rem" class="border-round bg-purple-500 mr-3 flex-shrink-0"></span>
+              <span class="text-xl font-medium text-90">Atencion en Domicilios?</span>
+              <div class="ml-auto"><p-inputSwitch [(ngModel)]="girl.attributes.attentionAtClientPlace"></p-inputSwitch></div>
+            </li>
+            <li class="flex align-items-center py-3">
+              <span style="width: 1rem; height: 1rem" class="border-round bg-yellow-500 mr-3 flex-shrink-0"></span>
+              <span class="text-xl font-medium text-90">Atencion en Dpto/Casa Propia?</span>
+              <div class="ml-auto"><p-inputSwitch [(ngModel)]="girl.attributes.attentionAtGirlPlace"></p-inputSwitch></div>
+            </li>
+            <li class="flex align-items-center py-3">
+              <span style="width: 1rem; height: 1rem" class="border-round bg-blue-500 mr-3 flex-shrink-0"></span>
+              <span class="text-xl font-medium text-90">Cuenta con estacionamiento?</span>
+              <div class="ml-auto"><p-inputSwitch [(ngModel)]="girl.parking"></p-inputSwitch></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="surface-card shadow-2 border-round p-4">
+          <div class="flex align-items-center justify-content-between">
+            <span class="text-xl font-medium text-900">Fisico</span>
+          </div>
+          <ul class="mt-1 list-none p-0 mx-0">
+            <li class="flex align-items-center py-3">
+              <span style="width: 1rem; height: 1rem" class="border-round bg-cyan-500 mr-3 flex-shrink-0"></span>
+              <span class="text-xl font-medium text-90">Cabello</span>
+              <div class="ml-auto">
+                <p-dropdown [options]="hairColorOptions" [(ngModel)]="girl.attributes.hair" placeholder="Seleccione Cabello"></p-dropdown>
+              </div>
+            </li>
+            <li class="flex align-items-center pb-3">
+              <span style="width: 1rem; height: 1rem" class="border-round bg-indigo-500 mr-3 flex-shrink-0"></span>
+              <span class="text-xl font-medium text-90">Depilación</span>
+              <div class="ml-auto">
+                <p-dropdown [options]="shavingStatusOpptions" [(ngModel)]="girl.attributes.shaving" placeholder="Seleccione Depilacion"></p-dropdown>
+              </div>
+            </li>
+            <li class="flex align-items-center py-3">
+              <span style="width: 1rem; height: 1rem" class="border-round bg-orange-500 mr-3 flex-shrink-0"></span>
+              <span class="text-xl font-medium text-90">Posee tatuajes?</span>
+              <div class="ml-auto"><p-inputSwitch [(ngModel)]="girl.attributes.tatoos"></p-inputSwitch></div>
+            </li>
+            <li class="flex align-items-center py-3">
+              <span style="width: 1rem; height: 1rem" class="border-round bg-purple-500 mr-3 flex-shrink-0"></span>
+              <span class="text-xl font-medium text-90">Fuma?</span>
+              <div class="ml-auto"><p-inputSwitch [(ngModel)]="girl.attributes.smoking"></p-inputSwitch></div>
+            </li>
+          </ul>
+          <div class="flex align-items-center justify-content-between mt-3">
+            <span class="text-xl font-medium text-900">Otro</span>
+          </div>
+          <ul class="mt-1 list-none p-0 mx-0">
+            <li class="flex align-items-center py-3">
+              <span style="width: 1rem; height: 1rem" class="border-round bg-orange-500 mr-3 flex-shrink-0"></span>
+              <span class="text-xl font-medium text-90">Ocultar cara en fotos?</span>
+              <div class="ml-auto"><p-inputSwitch [(ngModel)]="girl.bluredFace"></p-inputSwitch></div>
+            </li>
+            <li class="flex align-items-center py-3">
+              <span style="width: 1rem; height: 1rem" class="border-round bg-purple-500 mr-3 flex-shrink-0"></span>
+              <span class="text-xl font-medium text-90">Es masajista?</span>
+              <div class="ml-auto"><p-inputSwitch [(ngModel)]="masajista"></p-inputSwitch></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="surface-ground">
+      <div class="grid">
+        <div class="col-12 lg:col-4 p-2">
+          <div class="shadow-2 surface-card border-round p-4 h-full flex-column flex justify-content-center">
+            <div class="flex align-items-start mb-5 justify-content-center">
+              <div class="text-center">
+                <span class="block text-900 mb-1 text-xl font-medium">Servicios</span>
+                <p class="text-600 mt-0 mb-0">Todos los servicios que desea ofrecer</p>
+              </div>
+            </div>
+            <div class="flex align-items-center justify-content-center">
+              <p-listbox
+                [options]="allServices"
+                [(ngModel)]="girl.services"
+                optionLabel="name"
+                [style]="{ width: '15rem' }"
+                [virtualScroll]="true"
+                [filter]="true"
+                [virtualScrollItemSize]="43"
+                scrollHeight="300px"
+                [multiple]="true"
+                appendTo="body"
+                [checkbox]="true"
+                [showToggleAll]="false"
+                [metaKeySelection]="false"
+                [listStyle]="{ 'max-height': '320px' }"
+              ></p-listbox>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 lg:col-4 p-2">
+          <div class="shadow-2 surface-card border-round p-4 h-full flex-column flex justify-content-center">
+            <div class="flex align-items-start mb-5 justify-content-center">
+              <div class="text-center">
+                <span class="block text-900 mb-1 text-xl font-medium">Servicios Pagados</span>
+                <p class="text-600 mt-0 mb-0">Todos los servicios por los que desea cobrar extra</p>
+                <p class="text-600 mt-1 mb-0">Primero debe seleccionar servicios que quiere ofrecer, y de ellos puede elegir por cuales quiere cobrar extra</p>
+              </div>
+            </div>
+            <div class="flex align-items-center justify-content-center">
+              <p-listbox
+                [options]="girl.services"
+                [(ngModel)]="girl.paidServices"
+                optionLabel="name"
+                [style]="{ width: '15rem' }"
+                [virtualScroll]="true"
+                [filter]="true"
+                [virtualScrollItemSize]="43"
+                scrollHeight="300px"
+                [multiple]="true"
+                appendTo="body"
+                [checkbox]="true"
+                [showToggleAll]="false"
+                [metaKeySelection]="false"
+                [listStyle]="{ 'max-height': '320px' }"
+              ></p-listbox>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 lg:col-4 p-2">
+          <div class="shadow-2 surface-card border-round p-4 h-full flex-column flex justify-content-center">
+            <div class="flex align-items-start mb-5 justify-content-center">
+              <div class="text-center">
+                <span class="block text-900 mb-1 text-xl font-medium">Idiomas</span>
+                <p class="text-600 mt-0 mb-0">Todos los idiomas que sabe hablar</p>
+              </div>
+            </div>
+            <div class="flex align-items-center justify-content-center">
+              <p-listbox
+                [options]="languageOptions"
+                [(ngModel)]="girl.attributes.languages"
+                [style]="{ width: '15rem' }"
+                [virtualScroll]="true"
+                [filter]="true"
+                [virtualScrollItemSize]="43"
+                [multiple]="true"
+                [checkbox]="true"
+                scrollHeight="300px"
+                [showToggleAll]="false"
+                [metaKeySelection]="false"
+                [listStyle]="{ 'max-height': '320px' }"
+              ></p-listbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="surface-card p-4 shadow-2 border-round">
+      <div class="text-3xl font-medium text-900 mb-2">Descripción</div>
+      <div class="font-medium text-500 mb-3">Escriba aqui la descripción que quiere para su perfil</div>
+      <div style="height: 150px" class="surface-border">
+        <textarea pInputTextarea [(ngModel)]="girl.description" class="text-area-max-width"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="surface-card p-4 shadow-2 border-round width-control">
+      <div class="text-3xl font-medium text-900 mb-2">Horario</div>
+      <div class="font-medium text-500 mb-3">de 00:00 a 24:00 sera considerado dia completo</div>
+      <p-table [value]="girl.schedule" [tableStyle]="{ 'min-width': '5rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: calc(100% / 7)">
+              <div class="center-container">
+                <p-tag severity="Primary"><span class="text-xl">Lunes</span></p-tag>
+              </div>
+            </th>
+            <th style="width: calc(100% / 7)">
+              <div class="center-container">
+                <p-tag severity="Primary"><span class="text-xl">Martes</span></p-tag>
+              </div>
+            </th>
+            <th style="width: calc(100% / 7)">
+              <div class="center-container">
+                <p-tag severity="Primary"><span class="text-xl">Miercoles</span></p-tag>
+              </div>
+            </th>
+            <th style="width: calc(100% / 7)">
+              <div class="center-container">
+                <p-tag severity="Primary"><span class="text-xl">Jueves</span></p-tag>
+              </div>
+            </th>
+            <th style="width: calc(100% / 7)">
+              <div class="center-container">
+                <p-tag severity="Primary"><span class="text-xl">Viernes</span></p-tag>
+              </div>
+            </th>
+            <th style="width: calc(100% / 7)">
+              <div class="center-container">
+                <p-tag severity="Primary"><span class="text-xl">Sabado</span></p-tag>
+              </div>
+            </th>
+            <th style="width: calc(100% / 7)">
+              <div class="center-container">
+                <p-tag severity="Primary"><span class="text-xl">Domingo</span></p-tag>
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-scheduleRow let-rowIndex="rowIndex">
+          <tr pStyleClass="border-bottom-3">
+            <td>
+              <div class="center-container">
+                <div class="tag flex-row" *ngIf="scheduleRow.monday">
+                  <div class="flex justify-content-end" style="width: 100%">
+                    <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('monday', rowIndex)"></i>
+                  </div>
+                  <div class="flex justify-content-between align-items-center pb-1">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.monday"
+                        [(ngModel)]="scheduleRow.monday.startTime"
+                        placeholder="Hora Desde"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.monday"
+                        [(ngModel)]="scheduleRow.monday.endTime"
+                        placeholder="Hora Hasta"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="!scheduleRow.monday">
+                  <p-button
+                    icon="pi pi-plus"
+                    class="py-2"
+                    [rounded]="true"
+                    severity="primary"
+                    [outlined]="true"
+                    (onClick)="addTimeBracketToDay('monday')"
+                  ></p-button>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="center-container">
+                <div class="tag flex-row" *ngIf="scheduleRow.tuesday">
+                  <div class="flex justify-content-end" style="width: 100%">
+                    <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('tuesday', rowIndex)"></i>
+                  </div>
+                  <div class="flex justify-content-between align-items-center pb-1">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.tuesday"
+                        [(ngModel)]="scheduleRow.tuesday.startTime"
+                        placeholder="Hora Desde"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.tuesday"
+                        [(ngModel)]="scheduleRow.tuesday.endTime"
+                        placeholder="Hora Hasta"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="!scheduleRow.tuesday">
+                  <p-button
+                    icon="pi pi-plus"
+                    class="py-2"
+                    [rounded]="true"
+                    severity="primary"
+                    [outlined]="true"
+                    (onClick)="addTimeBracketToDay('tuesday')"
+                  ></p-button>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="center-container">
+                <div class="tag flex-row" *ngIf="scheduleRow.wednesday">
+                  <div class="flex justify-content-end" style="width: 100%">
+                    <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('wednesday', rowIndex)"></i>
+                  </div>
+                  <div class="flex justify-content-between align-items-center pb-1">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.wednesday"
+                        [(ngModel)]="scheduleRow.wednesday.startTime"
+                        placeholder="Hora Desde"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.wednesday"
+                        [(ngModel)]="scheduleRow.wednesday.endTime"
+                        placeholder="Hora Hasta"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="!scheduleRow.wednesday">
+                  <p-button
+                    icon="pi pi-plus"
+                    class="py-2"
+                    [rounded]="true"
+                    severity="primary"
+                    [outlined]="true"
+                    (onClick)="addTimeBracketToDay('wednesday')"
+                  ></p-button>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="center-container">
+                <div class="tag flex-row" *ngIf="scheduleRow.thursday">
+                  <div class="flex justify-content-end" style="width: 100%">
+                    <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('thursday', rowIndex)"></i>
+                  </div>
+                  <div class="flex justify-content-between align-items-center pb-1">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.thursday"
+                        [(ngModel)]="scheduleRow.thursday.startTime"
+                        placeholder="Hora Desde"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.thursday"
+                        [(ngModel)]="scheduleRow.thursday.endTime"
+                        placeholder="Hora Hasta"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="!scheduleRow.thursday">
+                  <p-button
+                    icon="pi pi-plus"
+                    class="py-2"
+                    [rounded]="true"
+                    severity="primary"
+                    [outlined]="true"
+                    (onClick)="addTimeBracketToDay('thursday')"
+                  ></p-button>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="center-container">
+                <div class="tag flex-row" *ngIf="scheduleRow.friday">
+                  <div class="flex justify-content-end" style="width: 100%">
+                    <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('friday', rowIndex)"></i>
+                  </div>
+                  <div class="flex justify-content-between align-items-center pb-1">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.friday"
+                        [(ngModel)]="scheduleRow.friday.startTime"
+                        placeholder="Hora Desde"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.friday"
+                        [(ngModel)]="scheduleRow.friday.endTime"
+                        placeholder="Hora Hasta"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="!scheduleRow.friday">
+                  <p-button
+                    icon="pi pi-plus"
+                    class="py-2"
+                    [rounded]="true"
+                    severity="primary"
+                    [outlined]="true"
+                    (onClick)="addTimeBracketToDay('friday')"
+                  ></p-button>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="center-container">
+                <div class="tag flex-row" *ngIf="scheduleRow.saturday">
+                  <div class="flex justify-content-end" style="width: 100%">
+                    <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('saturday', rowIndex)"></i>
+                  </div>
+                  <div class="flex justify-content-between align-items-center pb-1">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.saturday"
+                        [(ngModel)]="scheduleRow.saturday.startTime"
+                        placeholder="Hora Desde"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.saturday"
+                        [(ngModel)]="scheduleRow.saturday.endTime"
+                        placeholder="Hora Hasta"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="!scheduleRow.saturday">
+                  <p-button
+                    icon="pi pi-plus"
+                    class="py-2"
+                    [rounded]="true"
+                    severity="primary"
+                    [outlined]="true"
+                    (onClick)="addTimeBracketToDay('saturday')"
+                  ></p-button>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="center-container">
+                <div class="tag flex-row" *ngIf="scheduleRow.sunday">
+                  <div class="flex justify-content-end" style="width: 100%">
+                    <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('sunday', rowIndex)"></i>
+                  </div>
+                  <div class="flex justify-content-between align-items-center pb-1">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.sunday"
+                        [(ngModel)]="scheduleRow.sunday.startTime"
+                        placeholder="Hora Desde"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
+                    <div style="max-width: 60%">
+                      <p-dropdown
+                        [options]="allDaysTimeOptions.sunday"
+                        [(ngModel)]="scheduleRow.sunday.endTime"
+                        placeholder="Hora Hasta"
+                        [editable]="true"
+                        appendTo="body"
+                        scrollHeight="300px"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="!scheduleRow.sunday">
+                  <p-button
+                    icon="pi pi-plus"
+                    class="py-2"
+                    [rounded]="true"
+                    severity="primary"
+                    [outlined]="true"
+                    (onClick)="addTimeBracketToDay('sunday')"
+                  ></p-button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<li class="flex align-items-center justify-content-between px-2 flex-wrap pt-4">
+  <p-button label="Cancelar Cambios" icon="pi pi-eraser" iconPos="right" class="pr-5" (onClick)="cancelAllChanges()"></p-button>
+  <p-button label="Guardar cambios" icon="pi pi-save" iconPos="right" (onClick)="saveGirlChanges()"></p-button>
+</li>

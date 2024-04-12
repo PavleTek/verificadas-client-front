@@ -1,0 +1,115 @@
+<ng-container *ngIf="user !== undefined">
+  <p-toast></p-toast>
+  <div *ngIf="!createReview && !selectedClient">
+    <h1>Reseñas de clientes</h1>
+    <div class="flex align-items-center mb-4">
+      <span class="pi pi-info-circle pr-2" [pTooltip]="searchTooltip"></span>
+      <div class="text-900 text-xl font-bold mr-4 white-space-nowrap">Buscar por numero telefonico</div>
+      <input
+        pInputText
+        class="text-900 text-xl"
+        [(ngModel)]="mainSearchInput"
+        placeholder="+56 9xxxxxxxx"
+        (keydown.enter)="searchForClientsWithPhonePrefix()"
+      />
+      <p-button icon="pi pi-search" class="pl-2" (onClick)="searchForClientsWithPhonePrefix()"></p-button>
+    </div>
+    <div *ngIf="!mainSearchTriggered" class="text-500">Porfavor ingresa un numero telefonico parcial o completo para comenzar a buscar</div>
+    <div *ngIf="mainSearchTriggered">
+      <div *ngIf="mainClientList.length">
+        <p-table [value]="mainClientList" dataKey="phoneNumber" [tableStyle]="{ 'min-width': '10rem' }" *ngIf="mainSearchTriggered" class="mt-5">
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="phoneNumber">Numero Telefonico <p-sortIcon field="phoneNumber"></p-sortIcon></th>
+              <th style="width: 15rem"></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-client>
+            <tr>
+              <td>{{ cleanPhone(client.phoneNumber) }}</td>
+              <td>
+                <p-button icon="pi pi-search" label="Ver Reseñas" (onClick)="goToClientPage(client.phoneNumber)"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div *ngIf="!mainClientList.length" class="text-500">No hay Resultados para tu busqueda</div>
+    </div>
+    <p-divider></p-divider>
+    <h1>Reseñas hechas por mi</h1>
+    <div *ngIf="personalReviewList.length">
+      <p-table
+        [value]="personalReviewList"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[5, 10, 25]"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Numero Telefonico</th>
+            <th>Reseña</th>
+            <th>Rating</th>
+            <th>Fecha</th>
+            <th style="width: min-content"></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-review>
+          <p-confirmPopup></p-confirmPopup>
+          <tr>
+            <td>{{ review.phoneNumber }}</td>
+            <td>{{ review.review }}</td>
+            <td><p-rating [(ngModel)]="review.rating" [cancel]="false" [readonly]="true"></p-rating></td>
+            <td>{{ formatDate(review.date) }}</td>
+            <td><p-button icon="pi pi-trash" severity="danger" class="pl-2" (onClick)="confirmDeleteReview($event, review)"></p-button></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <p-divider></p-divider>
+    <p-button label="Crear Nueva Reseña" icon="pi pi-plus" iconPos="right" (onClick)="startCreateReview()"></p-button>
+  </div>
+  <div *ngIf="createReview">
+    <div class="surface-card p-4 shadow-2 border-round">
+      <ul class="list-none p-0 m-0">
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 font-medium mr-3 white-space-nowrap">Numero Telefonico del cliente</div>
+          <p-inputMask mask="+99 999999999" [(ngModel)]="newReview.phoneNumber" placeholder="+56 9xxxxxxxx"></p-inputMask>
+        </li>
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Rating</div>
+          <p-rating [(ngModel)]="newReview.rating" [cancel]="false"></p-rating>
+        </li>
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Descripcion</div>
+          <textarea rows="8" cols="60" class="text-900 font-medium mb-2" pInputTextarea [(ngModel)]="newReview.review"></textarea>
+        </li>
+        <li class="flex align-items-center justify-content-between border-top-1 px-2 surface-border flex-wrap pt-4">
+          <p-button label="Cancel" icon="pi pi-trash" iconPos="right" class="pr-5" (onClick)="cancelCreateReview()"></p-button>
+          <p-button label="Save" icon="pi pi-save" iconPos="right" (onClick)="saveNewReview()"></p-button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="selectedClient">
+    <div class="flex align-items-center">
+      <p-button icon="pi pi-arrow-left" class="pr-3" (onClick)="backFromClientView()"></p-button>
+      <h1>{{ cleanPhone(selectedClient.phoneNumber) }}</h1>
+    </div>
+    <div *ngFor="let review of selectedClient.reviews">
+      <div class="p-2">
+        <div class="border-1 surface-border border-round p-3">
+          <div class="flex align-items-center mb-3">
+            <span class="text-900 font-medium mr-3">{{ formatDate(review.date) }}</span>
+            <span class="text-sm font-medium text-500"></span>
+            <p-rating [(ngModel)]="review.rating" [cancel]="false" [readonly]="true"></p-rating>
+          </div>
+          <p class="m-0 p-0 line-height-3 text-600">{{ review.review }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

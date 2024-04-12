@@ -1,0 +1,58 @@
+.service-chip {
+  width: max-content;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.custom-col {
+  flex: 0 0 calc(100% / 7);
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  border: none;
+}
+
+.center-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+.tag {
+  background: var(--primary-700);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.4rem;
+  border-radius: 3px;
+}
+
+.centered-multiline-text {
+  display: block;
+  text-align: center;
+  white-space: pre;
+  line-height: 1.2; /* Adjust line height as needed */
+  max-width: 100%; /* Adjust maximum width as needed */
+  max-height: 3.6em; /* Adjust maximum height to allow for 3 lines */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Optional: Ellipsis for overflow */
+}
+
+.pointer-on-hover {
+  cursor: pointer;
+}
+
+.text-area-max-width {
+  width: 100%;
+  height: 100%;
+}
+
+.width-control {
+  max-width: 85vw !important;
+}

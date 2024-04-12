@@ -1,0 +1,92 @@
+<h1>Multimedia</h1>
+<p-toast></p-toast>
+<!-- Profile Picture Start -->
+<div class="surface-card p-4 mt-4 shadow-2 border-round">
+  <div class="flex flex-column align-items-start mb-3">
+    <h2 class="pr-3">Foto de perfil pendiente de aprobación</h2>
+    <p-fileUpload [customUpload]="true" (uploadHandler)="onUploadProfilePicture($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+      <ng-template pTemplate="content">
+        <ul *ngIf="uploadedFiles.length">
+          <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+        </ul>
+      </ng-template>
+    </p-fileUpload>
+  </div>
+  <ul class="list-none p-0 m-0" *ngIf="girl.requestProfilePicture !== undefined">
+    <div class="grid" id="profilePictureRequestContainer">
+      <div class="col-2">
+        <div class="image-container" (click)="openImage(0, 'profilePictureRequest')">
+          <img [src]="girl.requestProfilePicture" alt="image" class="grid-img" />
+        </div>
+      </div>
+    </div>
+  </ul>
+  <span class="text-500 w-6 md:w-2 py-2" *ngIf="girl.requestProfilePicture === undefined">No tiene foto de perfil pendientes de aprobación </span>
+</div>
+<div class="surface-card p-4 mt-4 shadow-2 border-round">
+  <h2 class="pr-3">Foto de Perfil activa</h2>
+  <ul class="list-none p-0 m-0" *ngIf="girl.profilePicture !== ''">
+    <div class="grid" id="activeProfilePictureContainer">
+      <div class="col-2">
+        <div class="image-container" (click)="openImage(0, 'activeProfilePicture')">
+          <img [src]="girl.profilePicture" alt="image" class="grid-img" />
+        </div>
+      </div>
+    </div>
+  </ul>
+  <span class="text-500 w-6 md:w-2 py-2" *ngIf="girl.profilePicture === ''">Todavia no tiene foto de perfil activa</span>
+</div>
+<!-- Profile Picture End -->
+<!-- Images Start-->
+<div class="surface-card p-4 mt-4 shadow-2 border-round">
+  <div class="flex flex-column align-items-start mb-3">
+    <h2 class="pr-3">Imagenes Pendientes de aprobación</h2>
+    <p-fileUpload [customUpload]="true" (uploadHandler)="onUploadPicture($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+      <ng-template pTemplate="content">
+        <ul *ngIf="uploadedFiles.length">
+          <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+        </ul>
+      </ng-template>
+    </p-fileUpload>
+  </div>
+  <ul class="list-none p-0 m-0" *ngIf="girl.images.request.length">
+    <div class="grid" id="imageGridPending">
+      <div *ngFor="let image of girl.images.request; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6">
+        <div class="image-container" (click)="openImage(index, 'request')">
+          <img [src]="image" alt="image" class="grid-img" />
+        </div>
+      </div>
+    </div>
+  </ul>
+  <span class="text-500 w-6 md:w-2 py-2" *ngIf="!girl.images.request.length">No tiene imagenes pendientes de aprobación</span>
+</div>
+<div class="surface-card p-4 mt-4 shadow-2 border-round">
+  <h2 class="pr-3">Imagenes activas</h2>
+  <ul class="list-none p-0 m-0" *ngIf="girl.images.active.length">
+    <div class="grid" id="imageGridActive">
+      <div *ngFor="let image of girl.images.active; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6">
+        <div class="image-container" (click)="openImage(index, 'active')">
+          <img [src]="image" alt="image" class="grid-img" />
+        </div>
+      </div>
+    </div>
+  </ul>
+  <span class="text-500 w-6 md:w-2 py-2" *ngIf="!girl.images.active.length">Todavia no tiene imagenes activas</span>
+</div>
+<!-- Images End -->
+<p-galleria
+  id="customGalleria"
+  [value]="activeGaleriaImages"
+  [(visible)]="displayCustom"
+  [(activeIndex)]="activeIndex"
+  [responsiveOptions]="responsiveOptions"
+  [numVisible]="7"
+  [circular]="true"
+  [fullScreen]="true"
+  [showItemNavigators]="true"
+  [showThumbnails]="false"
+>
+  <ng-template pTemplate="item" let-item>
+    <img [src]="item" style="height: 100%; display: block" id="customImageDisplay" class="display-image" />
+  </ng-template>
+</p-galleria>
