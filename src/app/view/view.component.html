@@ -2,7 +2,7 @@
   <ng-container *ngIf="phoneView">
     <section class="surface-section">
       <div class="grid">
-        <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 flex flex-column align-items-center">
+        <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 flex flex-column align-items-center horizontal-screen-width">
           <ng-container *ngIf="girl.profilePicture !== ''">
             <img [src]="girl.profilePicture" alt="Image" class="w-19rem border-3 border-circle border-0 profile-picture" />
           </ng-container>
@@ -144,7 +144,6 @@
             </div>
           </div>
         </div>
-
         <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 pt-6">
           <div class="flex-column services-container">
             <h2 class="text-center">Atributos</h2>
@@ -547,6 +546,7 @@
         <ng-template pTemplate="item" let-item>
           <img [src]="item" style="height: 100%; display: block" id="customImageDisplay" class="display-image" />
         </ng-template>
-      </p-galleria></section
-  ></ng-container>
+      </p-galleria>
+    </section>
+  </ng-container>
 </ng-container>

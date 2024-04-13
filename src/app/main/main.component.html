@@ -84,7 +84,7 @@
       </div>
     </div>
   </div>
-  <div class="min-h-screen flex flex-column relative flex-auto">
+  <div class="min-h-screen flex flex-column relative flex-auto horizontal-screen-width">
     <a
       pRipple
       class="cursor-pointer block lg:hidden text-700 mr-3"
@@ -98,7 +98,7 @@
       <i class="pi pi-bars text-4xl"></i>
     </a>
     <p-divider></p-divider>
-    <div *ngIf="user !== undefined && user.girl !== undefined" class="px-5 py-5">
+    <div *ngIf="user !== undefined && user.girl !== undefined" class="py-5 lg:px-5 horizontal-screen-width">
       <router-outlet></router-outlet>
     </div>
   </div>
