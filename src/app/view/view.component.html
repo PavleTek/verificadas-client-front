@@ -1,275 +1,552 @@
 <ng-container *ngIf="girl !== undefined">
-  <section class="surface-section">
-    <div class="grid">
-      <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 pt-6">
-        <div class="flex-column services-container">
-          <h2 class="text-center">Servicios</h2>
-          <div class="services-container flex flex-wrap align-items-center justify-content-center">
-            <div *ngFor="let service of girl.services">
+  <ng-container *ngIf="phoneView">
+    <section class="surface-section">
+      <div class="grid">
+        <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 flex flex-column align-items-center">
+          <ng-container *ngIf="girl.profilePicture !== ''">
+            <img [src]="girl.profilePicture" alt="Image" class="w-19rem border-3 border-circle border-0 profile-picture" />
+          </ng-container>
+          <ng-container *ngIf="girl.profilePicture === ''">
+            <img src="../../assets/basicProfilePicture.jpg" alt="Image" class="w-19rem border-3 border-circle border-0 profile-picture" />
+          </ng-container>
+          <div class="flex flex-column align-items-center justify-content-center mb-2">
+            <h1 class="m-0 font-semibold text-900 text-4xl line-height-3 mb-2">
+              {{ girl.name }}<i class="pi pi-verified text-2xl text-primary-500 pl-2" [pTooltip]="getVerificationTooltip()"></i>
+            </h1>
+            <span class="text-700 text-base text-center">{{ girl.description }}</span>
+          </div>
+          <div class="flex align-items-center gap-2 mt-1 mb-3">
+            <span class="text-700 text-base text-2xl text-center white-space-nowrap">{{ getAgeFromBday(girl.bday) }} Años</span>
+            <p-divider layout="vertical"></p-divider>
+            <div class="flex flex-nowrap align-items-end">
+              <span class="text-700 text-base text-center text-2xl pr-1">{{ girl.height }}</span>
+              <span class="text-700 text-base text-center text-lg">Cm</span>
+            </div>
+            <p-divider layout="vertical"></p-divider>
+            <div class="flex flex-nowrap align-items-end">
+              <span class="text-700 text-base text-center text-2xl pr-1">{{ girl.weight }}</span>
+              <span class="text-700 text-base text-center text-lg">Kg</span>
+            </div>
+            <p-divider layout="vertical"></p-divider>
+            <div class="flex flex-nowrap align-items-end">
+              <span class="text-700 text-base text-center text-2xl">{{ girl.chestCm }}</span>
+              <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
+              <span class="text-700 text-base text-center text-2xl">{{ girl.waistCm }}</span>
+              <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
+              <span class="text-700 text-base text-center text-2xl">{{ girl.bottomCm }}</span>
+              <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
+            </div>
+          </div>
+          <div class="flex align-items-center gap-2">
+            <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="callGirl(girl)">
+              <span class="pi pi-phone text-xl pr-1"></span><span>Llamar</span>
+            </p-button>
+            <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="whatsappGirl(girl)">
+              <span class="pi pi-whatsapp text-xl pr-1"></span><span>Whatsapp</span>
+            </p-button>
+            <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="showPriceDialog()">
+              <span class="pi pi-dollar text-xl"></span><span>{{ formatButtonPrice(girl.sessionPrices.oneHourPrice) }}</span>
+            </p-button>
+            <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="showScheduleDialog()">
+              <span class="pi pi-clock text-xl pr-1"></span>
+              <span>Horario</span>
+            </p-button>
+            <p-dialog
+              [(visible)]="priceDialogVisible"
+              appendTo="body"
+              [modal]="true"
+              [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+              [style]="{ 'max-width': '80vw', 'min-width': '40vw' }"
+            >
+              <ng-template pTemplate="header">
+                <div class="flex align-items-center">
+                  <span class="flex align-items-center justify-content-center bg-yellow-700 mr-3 border-circle p-2">
+                    <i class="pi pi-dollar text-xl"></i>
+                  </span>
+                  <span class="font-medium text-2xl text-900">Precios</span>
+                </div>
+              </ng-template>
+              <div class="flex flex-column w-max">
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.halfHourPrice">
+                  <span class="text-lg font-medium pr-5">Media hora: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.halfHourPrice) }}</span>
+                </div>
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.oneHourPrice">
+                  <span class="text-lg font-medium pr-5">Una hora: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.oneHourPrice) }}</span>
+                </div>
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.oneAndAHalfHourPrice">
+                  <span class="text-lg font-medium pr-5">Una hora y media: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.oneAndAHalfHourPrice) }}</span>
+                </div>
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.twoHourPrice">
+                  <span class="text-lg font-medium pr-5">Dos horas: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.twoHourPrice) }}</span>
+                </div>
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.fourHourPrice">
+                  <span class="text-lg font-medium pr-5">Cuatro Horas: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.fourHourPrice) }}</span>
+                </div>
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.dinnerPrice">
+                  <span class="text-lg font-medium pr-5">Cena: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.dinnerPrice) }}</span>
+                </div>
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.wholeNight">
+                  <span class="text-lg font-medium pr-5">Noche completa: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.wholeNight) }}</span>
+                </div>
+              </div>
+              <ng-template pTemplate="footer">
+                <div class="border-top-1 surface-border pt-1">
+                  <button pButton pRipple icon="pi pi-times" (click)="priceDialogVisible = false" label="Cerrar" class="p-button-text"></button>
+                </div>
+              </ng-template>
+            </p-dialog>
+            <p-dialog
+              [(visible)]="scheduleDialogVisible"
+              appendTo="body"
+              [modal]="true"
+              [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+              [style]="{ 'max-width': '80vw' }"
+            >
+              <ng-template pTemplate="header">
+                <div class="flex align-items-center">
+                  <span class="flex align-items-center justify-content-center bg-primary-700 mr-3 border-circle p-2">
+                    <i class="pi pi-calendar text-xl"></i>
+                  </span>
+                  <span class="font-medium text-2xl text-900">Horario</span>
+                </div>
+              </ng-template>
+              <app-week-schedule [schedule]="girl.schedule"></app-week-schedule>
+              <ng-template pTemplate="footer">
+                <div class="border-top-1 surface-border pt-1">
+                  <button pButton pRipple icon="pi pi-times" (click)="scheduleDialogVisible = false" label="Cerrar" class="p-button-text"></button>
+                </div>
+              </ng-template>
+            </p-dialog>
+          </div>
+        </div>
+        <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 pt-6">
+          <div class="flex-column services-container">
+            <h2 class="text-center">Servicios</h2>
+            <div class="services-container flex flex-wrap align-items-center justify-content-center">
+              <div *ngFor="let service of girl.services">
+                <div class="mb-2 mr-2">
+                  <p-chip class="white-space-nowrap" *ngIf="checkIfServiceIsPaid(service.id)">
+                    <i class="pi pi-dollar p-1" style="color: var(--yellow-600)" pTooltip="Este servicio tiene un costo adicional"></i>
+                    <span class="chip-text text-lg font-semibold pr-1" [pTooltip]="service.description">{{ service.name }}</span>
+                  </p-chip>
+                  <p-chip class="white-space-nowrap" *ngIf="!checkIfServiceIsPaid(service.id)">
+                    <span class="chip-text text-lg font-semibold px-1" [pTooltip]="service.description">{{ service.name }}</span>
+                  </p-chip>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 pt-6">
+          <div class="flex-column services-container">
+            <h2 class="text-center">Atributos</h2>
+            <div class="services-container flex flex-wrap align-items-center justify-content-center">
               <div class="mb-2 mr-2">
-                <p-chip class="white-space-nowrap" *ngIf="checkIfServiceIsPaid(service.id)">
-                  <i class="pi pi-dollar p-1" style="color: var(--yellow-600)" pTooltip="Este servicio tiene un costo adicional"></i>
-                  <span class="chip-text text-lg font-semibold pr-1" [pTooltip]="service.description">{{ service.name }}</span>
-                </p-chip>
-                <p-chip class="white-space-nowrap" *ngIf="!checkIfServiceIsPaid(service.id)">
-                  <span class="chip-text text-lg font-semibold px-1" [pTooltip]="service.description">{{ service.name }}</span>
+                <p-chip class="white-space-nowrap" *ngIf="girl.specificLocation && girl.specificLocation.name !== noDisplayValue">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.specificLocation.name }}</span>
                 </p-chip>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 flex flex-column align-items-center">
-        <ng-container *ngIf="girl.profilePicture !== ''">
-          <img [src]="girl.profilePicture" alt="Image" class="w-19rem border-3 border-circle border-0 profile-picture" />
-        </ng-container>
-        <ng-container *ngIf="girl.profilePicture === ''">
-          <img src="../../assets/basicProfilePicture.jpg" alt="Image" class="w-19rem border-3 border-circle border-0 profile-picture" />
-        </ng-container>
-        <div class="flex flex-column align-items-center justify-content-center mb-2">
-          <h1 class="m-0 font-semibold text-900 text-4xl line-height-3 mb-2">
-            {{ girl.name }}<i class="pi pi-verified text-2xl text-primary-500 pl-2" [pTooltip]="getVerificationTooltip()"></i>
-          </h1>
-          <span class="text-700 text-base text-center">{{ girl.description }}</span>
-        </div>
-        <div class="flex align-items-center gap-2 mt-1 mb-3">
-          <span class="text-700 text-base text-2xl text-center white-space-nowrap">{{ getAgeFromBday(girl.bday) }} Años</span>
-          <p-divider layout="vertical"></p-divider>
-          <div class="flex flex-nowrap align-items-end">
-            <span class="text-700 text-base text-center text-2xl pr-1">{{ girl.height }}</span>
-            <span class="text-700 text-base text-center text-lg">Cm</span>
-          </div>
-          <p-divider layout="vertical"></p-divider>
-          <div class="flex flex-nowrap align-items-end">
-            <span class="text-700 text-base text-center text-2xl pr-1">{{ girl.weight }}</span>
-            <span class="text-700 text-base text-center text-lg">Kg</span>
-          </div>
-          <p-divider layout="vertical"></p-divider>
-          <div class="flex flex-nowrap align-items-end">
-            <span class="text-700 text-base text-center text-2xl">{{ girl.chestCm }}</span>
-            <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
-            <span class="text-700 text-base text-center text-2xl">{{ girl.waistCm }}</span>
-            <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
-            <span class="text-700 text-base text-center text-2xl">{{ girl.bottomCm }}</span>
-            <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
-          </div>
-        </div>
-        <div class="flex align-items-center gap-2">
-          <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="callGirl(girl)">
-            <span class="pi pi-phone text-xl pr-1"></span><span>Llamar</span>
-          </p-button>
-          <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="whatsappGirl(girl)">
-            <span class="pi pi-whatsapp text-xl pr-1"></span><span>Whatsapp</span>
-          </p-button>
-          <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="showPriceDialog()">
-            <span class="pi pi-dollar text-xl"></span><span>{{ formatButtonPrice(girl.sessionPrices.oneHourPrice) }}</span>
-          </p-button>
-          <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="showScheduleDialog()">
-            <span class="pi pi-clock text-xl pr-1"></span>
-            <span>Horario</span>
-          </p-button>
-          <p-dialog
-            [(visible)]="priceDialogVisible"
-            appendTo="body"
-            [modal]="true"
-            [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
-            [style]="{ 'max-width': '80vw', 'min-width': '40vw' }"
-          >
-            <ng-template pTemplate="header">
-              <div class="flex align-items-center">
-                <span class="flex align-items-center justify-content-center bg-yellow-700 mr-3 border-circle p-2">
-                  <i class="pi pi-dollar text-xl"></i>
-                </span>
-                <span class="font-medium text-2xl text-900">Precios</span>
-              </div>
-            </ng-template>
-            <div class="flex flex-column w-max">
-              <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.halfHourPrice">
-                <span class="text-lg font-medium pr-5">Media hora: </span>
-                <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.halfHourPrice) }}</span>
-              </div>
-              <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.oneHourPrice">
-                <span class="text-lg font-medium pr-5">Una hora: </span>
-                <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.oneHourPrice) }}</span>
-              </div>
-              <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.oneAndAHalfHourPrice">
-                <span class="text-lg font-medium pr-5">Una hora y media: </span>
-                <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.oneAndAHalfHourPrice) }}</span>
-              </div>
-              <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.twoHourPrice">
-                <span class="text-lg font-medium pr-5">Dos horas: </span>
-                <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.twoHourPrice) }}</span>
-              </div>
-              <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.fourHourPrice">
-                <span class="text-lg font-medium pr-5">Cuatro Horas: </span>
-                <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.fourHourPrice) }}</span>
-              </div>
-              <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.dinnerPrice">
-                <span class="text-lg font-medium pr-5">Cena: </span>
-                <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.dinnerPrice) }}</span>
-              </div>
-              <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.wholeNight">
-                <span class="text-lg font-medium pr-5">Noche completa: </span>
-                <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.wholeNight) }}</span>
-              </div>
-            </div>
-            <ng-template pTemplate="footer">
-              <div class="border-top-1 surface-border pt-1">
-                <button pButton pRipple icon="pi pi-times" (click)="priceDialogVisible = false" label="Cerrar" class="p-button-text"></button>
-              </div>
-            </ng-template>
-          </p-dialog>
-          <p-dialog
-            [(visible)]="scheduleDialogVisible"
-            appendTo="body"
-            [modal]="true"
-            [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
-            [style]="{ 'max-width': '80vw' }"
-          >
-            <ng-template pTemplate="header">
-              <div class="flex align-items-center">
-                <span class="flex align-items-center justify-content-center bg-primary-700 mr-3 border-circle p-2">
-                  <i class="pi pi-calendar text-xl"></i>
-                </span>
-                <span class="font-medium text-2xl text-900">Horario</span>
-              </div>
-            </ng-template>
-            <app-week-schedule [schedule]="girl.schedule"></app-week-schedule>
-            <ng-template pTemplate="footer">
-              <div class="border-top-1 surface-border pt-1">
-                <button pButton pRipple icon="pi pi-times" (click)="scheduleDialogVisible = false" label="Cerrar" class="p-button-text"></button>
-              </div>
-            </ng-template>
-          </p-dialog>
-        </div>
-      </div>
-      <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 pt-6">
-        <div class="flex-column services-container">
-          <h2 class="text-center">Atributos</h2>
-          <div class="services-container flex flex-wrap align-items-center justify-content-center">
-            <div class="mb-2 mr-2">
-              <p-chip class="white-space-nowrap" *ngIf="girl.specificLocation && girl.specificLocation.name !== noDisplayValue">
-                <span class="chip-text text-lg font-semibold px-1">{{ girl.specificLocation.name }}</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2">
-              <p-chip class="white-space-nowrap" *ngIf="girl.nationality && girl.nationality.name !== noDisplayValue">
-                <span class="chip-text text-lg font-semibold px-1">{{ girl.nationality.name }}</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2">
-              <p-chip class="white-space-nowrap" *ngIf="girl.ethnicity && girl.ethnicity.name !== noDisplayValue">
-                <span class="chip-text text-lg font-semibold px-1">{{ girl.ethnicity.name }}</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="girl.parking">
-              <p-chip class="white-space-nowrap">
-                <span class="chip-text text-lg font-semibold px-1">Con estacionamiento</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="girl.attributes.contexture !== ''">
-              <p-chip class="white-space-nowrap" *ngIf="girl.attributes.contexture">
-                <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.contexture }}</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="girl.attributes.hair !== ''">
-              <p-chip class="white-space-nowrap" *ngIf="girl.attributes.hair">
-                <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.hair }}</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="girl.attributes.eyes !== ''">
-              <p-chip class="white-space-nowrap">
-                <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.eyes }}</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="girl.attributes.chestSize !== ''">
-              <p-chip class="white-space-nowrap">
-                <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.chestSize }}</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="girl.attributes.bottomSize !== ''">
-              <p-chip class="white-space-nowrap">
-                <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.bottomSize }}</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="girl.attributes.shaving !== ''">
-              <p-chip class="white-space-nowrap">
-                <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.shaving }}</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtHotels">
-              <p-chip class="white-space-nowrap">
-                <span class="chip-text text-lg font-semibold px-1">Atencion en hoteles</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtGirlPlace">
-              <p-chip class="white-space-nowrap">
-                <span class="chip-text text-lg font-semibold px-1">Atencion en lugar propio</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtClientPlace">
-              <p-chip class="white-space-nowrap">
-                <span class="chip-text text-lg font-semibold px-1">Atencion a domicilio</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="!girl.attributes.smoking">
-              <p-chip class="white-space-nowrap">
-                <span class="chip-text text-lg font-semibold px-1">No fuma</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="!girl.attributes.tatoos">
-              <p-chip class="white-space-nowrap">
-                <span class="chip-text text-lg font-semibold px-1">Sin tatuajes</span>
-              </p-chip>
-            </div>
-            <div class="mb-2 mr-2" *ngIf="girl.attributes.tatoos">
-              <p-chip class="white-space-nowrap">
-                <span class="chip-text text-lg font-semibold px-1">Con tatuajes</span>
-              </p-chip>
-            </div>
-            <div *ngFor="let language of girl.attributes.languages">
               <div class="mb-2 mr-2">
+                <p-chip class="white-space-nowrap" *ngIf="girl.nationality && girl.nationality.name !== noDisplayValue">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.nationality.name }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2">
+                <p-chip class="white-space-nowrap" *ngIf="girl.ethnicity && girl.ethnicity.name !== noDisplayValue">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.ethnicity.name }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.parking">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">{{ language }}</span>
+                  <span class="chip-text text-lg font-semibold px-1">Con estacionamiento</span>
                 </p-chip>
               </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.contexture !== ''">
+                <p-chip class="white-space-nowrap" *ngIf="girl.attributes.contexture">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.contexture }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.hair !== ''">
+                <p-chip class="white-space-nowrap" *ngIf="girl.attributes.hair">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.hair }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.eyes !== ''">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.eyes }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.chestSize !== ''">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.chestSize }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.bottomSize !== ''">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.bottomSize }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.shaving !== ''">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.shaving }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtHotels">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">Atencion en hoteles</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtGirlPlace">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">Atencion en lugar propio</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtClientPlace">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">Atencion a domicilio</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="!girl.attributes.smoking">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">No fuma</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="!girl.attributes.tatoos">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">Sin tatuajes</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.tatoos">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">Con tatuajes</span>
+                </p-chip>
+              </div>
+              <div *ngFor="let language of girl.attributes.languages">
+                <div class="mb-2 mr-2">
+                  <p-chip class="white-space-nowrap">
+                    <span class="chip-text text-lg font-semibold px-1">{{ language }}</span>
+                  </p-chip>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-12">
-        <p-divider></p-divider>
-        <div class="full-width justify-content-center flex">
-          <span class="text-center text-400">{{ getTextForEditLevel(girl) }}</span>
+        <div class="col-12">
+          <p-divider></p-divider>
+          <div class="full-width justify-content-center flex">
+            <span class="text-center text-400">{{ getTextForEditLevel(girl) }}</span>
+          </div>
         </div>
-      </div>
-      <div class="col-12 justify-content-center align-items-center">
-        <div class="flex w-fill justify-content-center mt-5">
-          <div class="grid w-11" id="imageGridActive">
-            <div *ngFor="let image of activeGirlImages; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6 p-3">
-              <div class="image-container" (click)="openImage(index)">
-                <img [src]="image" alt="image" class="grid-img" />
+        <div class="col-12 justify-content-center align-items-center">
+          <div class="flex w-fill justify-content-center mt-5">
+            <div class="grid w-11" id="imageGridActive">
+              <div *ngFor="let image of activeGirlImages; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6 p-3">
+                <div class="image-container" (click)="openImage(index)">
+                  <img [src]="image" alt="image" class="grid-img" />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <p-galleria
-      id="customGalleria"
-      [value]="activeGaleriaImages"
-      [(visible)]="displayCustom"
-      [(activeIndex)]="activeIndex"
-      [responsiveOptions]="responsiveOptions"
-      [numVisible]="7"
-      [circular]="true"
-      [fullScreen]="true"
-      [showItemNavigators]="true"
-      [showThumbnails]="false"
-    >
-      <ng-template pTemplate="item" let-item>
-        <img [src]="item" style="height: 100%; display: block" id="customImageDisplay" class="display-image" />
-      </ng-template>
-    </p-galleria>
-  </section>
+      <p-galleria
+        id="customGalleria"
+        [value]="activeGaleriaImages"
+        [(visible)]="displayCustom"
+        [(activeIndex)]="activeIndex"
+        [responsiveOptions]="responsiveOptions"
+        [numVisible]="7"
+        [circular]="true"
+        [fullScreen]="true"
+        [showItemNavigators]="true"
+        [showThumbnails]="false"
+      >
+        <ng-template pTemplate="item" let-item>
+          <img [src]="item" style="height: 100%; display: block" id="customImageDisplay" class="display-image" />
+        </ng-template>
+      </p-galleria>
+    </section>
+  </ng-container>
+  <ng-container *ngIf="!phoneView">
+    <section class="surface-section">
+      <div class="grid">
+        <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 pt-6">
+          <div class="flex-column services-container">
+            <h2 class="text-center">Servicios</h2>
+            <div class="services-container flex flex-wrap align-items-center justify-content-center">
+              <div *ngFor="let service of girl.services">
+                <div class="mb-2 mr-2">
+                  <p-chip class="white-space-nowrap" *ngIf="checkIfServiceIsPaid(service.id)">
+                    <i class="pi pi-dollar p-1" style="color: var(--yellow-600)" pTooltip="Este servicio tiene un costo adicional"></i>
+                    <span class="chip-text text-lg font-semibold pr-1" [pTooltip]="service.description">{{ service.name }}</span>
+                  </p-chip>
+                  <p-chip class="white-space-nowrap" *ngIf="!checkIfServiceIsPaid(service.id)">
+                    <span class="chip-text text-lg font-semibold px-1" [pTooltip]="service.description">{{ service.name }}</span>
+                  </p-chip>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 flex flex-column align-items-center">
+          <ng-container *ngIf="girl.profilePicture !== ''">
+            <img [src]="girl.profilePicture" alt="Image" class="w-19rem border-3 border-circle border-0 profile-picture" />
+          </ng-container>
+          <ng-container *ngIf="girl.profilePicture === ''">
+            <img src="../../assets/basicProfilePicture.jpg" alt="Image" class="w-19rem border-3 border-circle border-0 profile-picture" />
+          </ng-container>
+          <div class="flex flex-column align-items-center justify-content-center mb-2">
+            <h1 class="m-0 font-semibold text-900 text-4xl line-height-3 mb-2">
+              {{ girl.name }}<i class="pi pi-verified text-2xl text-primary-500 pl-2" [pTooltip]="getVerificationTooltip()"></i>
+            </h1>
+            <span class="text-700 text-base text-center">{{ girl.description }}</span>
+          </div>
+          <div class="flex align-items-center gap-2 mt-1 mb-3">
+            <span class="text-700 text-base text-2xl text-center white-space-nowrap">{{ getAgeFromBday(girl.bday) }} Años</span>
+            <p-divider layout="vertical"></p-divider>
+            <div class="flex flex-nowrap align-items-end">
+              <span class="text-700 text-base text-center text-2xl pr-1">{{ girl.height }}</span>
+              <span class="text-700 text-base text-center text-lg">Cm</span>
+            </div>
+            <p-divider layout="vertical"></p-divider>
+            <div class="flex flex-nowrap align-items-end">
+              <span class="text-700 text-base text-center text-2xl pr-1">{{ girl.weight }}</span>
+              <span class="text-700 text-base text-center text-lg">Kg</span>
+            </div>
+            <p-divider layout="vertical"></p-divider>
+            <div class="flex flex-nowrap align-items-end">
+              <span class="text-700 text-base text-center text-2xl">{{ girl.chestCm }}</span>
+              <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
+              <span class="text-700 text-base text-center text-2xl">{{ girl.waistCm }}</span>
+              <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
+              <span class="text-700 text-base text-center text-2xl">{{ girl.bottomCm }}</span>
+              <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
+            </div>
+          </div>
+          <div class="flex align-items-center gap-2">
+            <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="callGirl(girl)">
+              <span class="pi pi-phone text-xl pr-1"></span><span>Llamar</span>
+            </p-button>
+            <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="whatsappGirl(girl)">
+              <span class="pi pi-whatsapp text-xl pr-1"></span><span>Whatsapp</span>
+            </p-button>
+            <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="showPriceDialog()">
+              <span class="pi pi-dollar text-xl"></span><span>{{ formatButtonPrice(girl.sessionPrices.oneHourPrice) }}</span>
+            </p-button>
+            <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="showScheduleDialog()">
+              <span class="pi pi-clock text-xl pr-1"></span>
+              <span>Horario</span>
+            </p-button>
+            <p-dialog
+              [(visible)]="priceDialogVisible"
+              appendTo="body"
+              [modal]="true"
+              [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+              [style]="{ 'max-width': '80vw', 'min-width': '40vw' }"
+            >
+              <ng-template pTemplate="header">
+                <div class="flex align-items-center">
+                  <span class="flex align-items-center justify-content-center bg-yellow-700 mr-3 border-circle p-2">
+                    <i class="pi pi-dollar text-xl"></i>
+                  </span>
+                  <span class="font-medium text-2xl text-900">Precios</span>
+                </div>
+              </ng-template>
+              <div class="flex flex-column w-max">
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.halfHourPrice">
+                  <span class="text-lg font-medium pr-5">Media hora: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.halfHourPrice) }}</span>
+                </div>
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.oneHourPrice">
+                  <span class="text-lg font-medium pr-5">Una hora: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.oneHourPrice) }}</span>
+                </div>
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.oneAndAHalfHourPrice">
+                  <span class="text-lg font-medium pr-5">Una hora y media: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.oneAndAHalfHourPrice) }}</span>
+                </div>
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.twoHourPrice">
+                  <span class="text-lg font-medium pr-5">Dos horas: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.twoHourPrice) }}</span>
+                </div>
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.fourHourPrice">
+                  <span class="text-lg font-medium pr-5">Cuatro Horas: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.fourHourPrice) }}</span>
+                </div>
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.dinnerPrice">
+                  <span class="text-lg font-medium pr-5">Cena: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.dinnerPrice) }}</span>
+                </div>
+                <div class="flex align-items-end pb-1 w-full justify-content-between" *ngIf="girl.sessionPrices.wholeNight">
+                  <span class="text-lg font-medium pr-5">Noche completa: </span>
+                  <span class="text-lg font-medium">{{ formatPrice(girl.sessionPrices.wholeNight) }}</span>
+                </div>
+              </div>
+              <ng-template pTemplate="footer">
+                <div class="border-top-1 surface-border pt-1">
+                  <button pButton pRipple icon="pi pi-times" (click)="priceDialogVisible = false" label="Cerrar" class="p-button-text"></button>
+                </div>
+              </ng-template>
+            </p-dialog>
+            <p-dialog
+              [(visible)]="scheduleDialogVisible"
+              appendTo="body"
+              [modal]="true"
+              [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+              [style]="{ 'max-width': '80vw' }"
+            >
+              <ng-template pTemplate="header">
+                <div class="flex align-items-center">
+                  <span class="flex align-items-center justify-content-center bg-primary-700 mr-3 border-circle p-2">
+                    <i class="pi pi-calendar text-xl"></i>
+                  </span>
+                  <span class="font-medium text-2xl text-900">Horario</span>
+                </div>
+              </ng-template>
+              <app-week-schedule [schedule]="girl.schedule"></app-week-schedule>
+              <ng-template pTemplate="footer">
+                <div class="border-top-1 surface-border pt-1">
+                  <button pButton pRipple icon="pi pi-times" (click)="scheduleDialogVisible = false" label="Cerrar" class="p-button-text"></button>
+                </div>
+              </ng-template>
+            </p-dialog>
+          </div>
+        </div>
+        <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 pt-6">
+          <div class="flex-column services-container">
+            <h2 class="text-center">Atributos</h2>
+            <div class="services-container flex flex-wrap align-items-center justify-content-center">
+              <div class="mb-2 mr-2">
+                <p-chip class="white-space-nowrap" *ngIf="girl.specificLocation && girl.specificLocation.name !== noDisplayValue">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.specificLocation.name }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2">
+                <p-chip class="white-space-nowrap" *ngIf="girl.nationality && girl.nationality.name !== noDisplayValue">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.nationality.name }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2">
+                <p-chip class="white-space-nowrap" *ngIf="girl.ethnicity && girl.ethnicity.name !== noDisplayValue">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.ethnicity.name }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.parking">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">Con estacionamiento</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.contexture !== ''">
+                <p-chip class="white-space-nowrap" *ngIf="girl.attributes.contexture">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.contexture }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.hair !== ''">
+                <p-chip class="white-space-nowrap" *ngIf="girl.attributes.hair">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.hair }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.eyes !== ''">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.eyes }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.chestSize !== ''">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.chestSize }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.bottomSize !== ''">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.bottomSize }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.shaving !== ''">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.shaving }}</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtHotels">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">Atencion en hoteles</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtGirlPlace">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">Atencion en lugar propio</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtClientPlace">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">Atencion a domicilio</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="!girl.attributes.smoking">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">No fuma</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="!girl.attributes.tatoos">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">Sin tatuajes</span>
+                </p-chip>
+              </div>
+              <div class="mb-2 mr-2" *ngIf="girl.attributes.tatoos">
+                <p-chip class="white-space-nowrap">
+                  <span class="chip-text text-lg font-semibold px-1">Con tatuajes</span>
+                </p-chip>
+              </div>
+              <div *ngFor="let language of girl.attributes.languages">
+                <div class="mb-2 mr-2">
+                  <p-chip class="white-space-nowrap">
+                    <span class="chip-text text-lg font-semibold px-1">{{ language }}</span>
+                  </p-chip>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <p-divider></p-divider>
+          <div class="full-width justify-content-center flex">
+            <span class="text-center text-400">{{ getTextForEditLevel(girl) }}</span>
+          </div>
+        </div>
+        <div class="col-12 justify-content-center align-items-center">
+          <div class="flex w-fill justify-content-center mt-5">
+            <div class="grid w-11" id="imageGridActive">
+              <div *ngFor="let image of activeGirlImages; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6 p-3">
+                <div class="image-container" (click)="openImage(index)">
+                  <img [src]="image" alt="image" class="grid-img" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p-galleria
+        id="customGalleria"
+        [value]="activeGaleriaImages"
+        [(visible)]="displayCustom"
+        [(activeIndex)]="activeIndex"
+        [responsiveOptions]="responsiveOptions"
+        [numVisible]="7"
+        [circular]="true"
+        [fullScreen]="true"
+        [showItemNavigators]="true"
+        [showThumbnails]="false"
+      >
+        <ng-template pTemplate="item" let-item>
+          <img [src]="item" style="height: 100%; display: block" id="customImageDisplay" class="display-image" />
+        </ng-template>
+      </p-galleria></section
+  ></ng-container>
 </ng-container>

@@ -12,6 +12,7 @@ import { WeekScheduleComponent } from '../week-schedule/week-schedule.component'
 import { EditLevel, Girl, PaymentTier, Service, TimeBracket } from '../types';
 import { formatPrice, getTextFromTimeBracket } from '../helper-functions';
 import { environment } from '../../environments/environment';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-view',
@@ -51,11 +52,23 @@ export class ViewComponent {
       numVisible: 1,
     },
   ];
+  phoneView: boolean = true;
 
-  constructor(private elementRef: ElementRef, private internalService: InternalService) {
+  constructor(private elementRef: ElementRef, private internalService: InternalService, private breakpointObserver: BreakpointObserver) {
     this.internalService.girlData.subscribe((data) => {
       if (data) {
         this.girl = data;
+      }
+    });
+    this.breakpointObserver.observe([Breakpoints.Handset]).subscribe((result) => {
+      if (result.matches) {
+        // It's a phone
+        console.log('It is a phone');
+        this.phoneView = true;
+      } else {
+        // It's not a phone
+        console.log('It is not a phone');
+        this.phoneView = false;
       }
     });
   }
