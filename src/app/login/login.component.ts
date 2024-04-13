@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -8,11 +9,12 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [InputTextModule, FormsModule, HttpClientModule],
+  imports: [InputTextModule, CommonModule, FormsModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+  loading: boolean = true;
   email: string = '';
   password: string = '';
   failed: boolean = false;
@@ -41,6 +43,9 @@ export class LoginComponent {
     const isGirlLoggedIn = await this.authService.isGirlLoggedIn();
     if (isGirlLoggedIn) {
       this.router.navigate(['/home/view ']);
+      this.loading = false;
+    } else {
+      this.loading = false;
     }
   }
 }

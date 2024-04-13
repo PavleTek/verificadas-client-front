@@ -3,6 +3,7 @@ import { ToastModule } from 'primeng/toast';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { StyleClassModule } from 'primeng/styleclass';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -39,8 +40,10 @@ import { cloneDeep } from 'lodash';
     InputTextModule,
     FormsModule,
     InputTextareaModule,
+    InputTextareaModule,
     InputMaskModule,
     InputSwitchModule,
+    StyleClassModule,
     DropdownModule,
     ToastModule,
     InputNumberModule,
@@ -208,10 +211,14 @@ export class EditComponent {
 
   mapGirlToSqlAcceptedObject(girl: Girl) {
     girl.name = this.capitalizeEachWord(girl.name);
-    const readyForBackEndObject = {
+    const readyForBackEndObject: any = {
       ...girl,
     };
     delete readyForBackEndObject.cityId;
+    delete readyForBackEndObject.images;
+    delete readyForBackEndObject.videos;
+    delete readyForBackEndObject.profilePicture;
+    delete readyForBackEndObject.requestProfilePicture;
     return readyForBackEndObject;
   }
 

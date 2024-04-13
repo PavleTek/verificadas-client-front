@@ -7,6 +7,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { GalleriaModule } from 'primeng/galleria';
 import { FileUploadHandlerEvent } from 'primeng/fileupload';
 
+import { paymentTierToMaxImagesMap } from '../consts';
 import { Girl } from '../types';
 import { getPendingImageUrlFromImageName } from '../helper-functions';
 import { MessageService } from 'primeng/api';
@@ -26,6 +27,7 @@ export class MultimediaComponent {
   @ViewChild('specificComponent') specificComponent: ElementRef | any;
 
   uploadedFiles: any[] = [];
+  paymentTierToMaxImagesMap: any = paymentTierToMaxImagesMap;
   totalImages: number = 1;
   activeGaleriaImages: string[] = [];
   displayCustom: boolean = false;
@@ -163,5 +165,6 @@ export class MultimediaComponent {
     }
     this.activeIndex = index;
     this.displayCustom = true;
+    console.log(this.girl);
   }
 }

@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { InternalService } from './internal.service';
 
-const TOKEN_KEY = 'auth-token';
-const USER_KEY = 'auth-user';
+const TOKEN_KEY = 'verificadas-client-auth-token';
+const USER_KEY = 'verificadas-client-auth-user';
 interface TokenVerificationResponse {
   valid: boolean;
   data: any;

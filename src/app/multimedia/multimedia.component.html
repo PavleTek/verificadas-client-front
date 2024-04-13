@@ -41,7 +41,14 @@
 <div class="surface-card p-4 mt-4 shadow-2 border-round">
   <div class="flex flex-column align-items-start mb-3">
     <h2 class="pr-3">Imagenes Pendientes de aprobación</h2>
-    <p-fileUpload [customUpload]="true" (uploadHandler)="onUploadPicture($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+    <p-fileUpload
+      [customUpload]="true"
+      (uploadHandler)="onUploadPicture($event)"
+      [multiple]="true"
+      accept="image/*"
+      [maxFileSize]="1000000"
+      [fileLimit]="paymentTierToMaxImagesMap[girl.paymentTier]"
+    >
       <ng-template pTemplate="content">
         <ul *ngIf="uploadedFiles.length">
           <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
@@ -51,9 +58,11 @@
   </div>
   <ul class="list-none p-0 m-0" *ngIf="girl.images.request.length">
     <div class="grid" id="imageGridPending">
-      <div *ngFor="let image of girl.images.request; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6">
-        <div class="image-container" (click)="openImage(index, 'request')">
-          <img [src]="image" alt="image" class="grid-img" />
+      <div class="flex flex-column">
+        <div *ngFor="let image of girl.images.request; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6">
+          <div class="image-container" (click)="openImage(index, 'request')">
+            <img [src]="image" alt="image" class="grid-img" />
+          </div>
         </div>
       </div>
     </div>
