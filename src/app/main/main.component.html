@@ -85,6 +85,18 @@
     </div>
   </div>
   <div class="min-h-screen flex flex-column relative flex-auto">
+    <a
+      pRipple
+      class="cursor-pointer block lg:hidden text-700 mr-3"
+      pStyleClass="#app-sidebar-9"
+      enterClass="hidden"
+      enterActiveClass="fadeinleft"
+      leaveToClass="hidden"
+      leaveActiveClass="fadeoutleft"
+      [hideOnOutsideClick]="true"
+    >
+      <i class="pi pi-bars text-4xl"></i>
+    </a>
     <p-divider></p-divider>
     <div *ngIf="user !== undefined && user.girl !== undefined" class="px-5 py-5">
       <router-outlet></router-outlet>

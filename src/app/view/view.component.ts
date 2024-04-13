@@ -7,8 +7,9 @@ import { ChipModule } from 'primeng/chip';
 import { GalleriaModule } from 'primeng/galleria';
 
 import { InternalService } from '../internal.service';
+import { paymentTierToMaxImagesMap } from '../consts';
 import { WeekScheduleComponent } from '../week-schedule/week-schedule.component';
-import { EditLevel, Girl, Service, TimeBracket } from '../types';
+import { EditLevel, Girl, PaymentTier, Service, TimeBracket } from '../types';
 import { formatPrice, getTextFromTimeBracket } from '../helper-functions';
 import { environment } from '../../environments/environment';
 
@@ -180,11 +181,14 @@ export class ViewComponent {
 
   ngOnInit() {
     if (this.girl !== undefined) {
+      const girlPaymentTier: PaymentTier = this.girl.paymentTier;
+      const maxImages: number = paymentTierToMaxImagesMap[girlPaymentTier];
       if (this.girl.bluredFace) {
         this.activeGirlImages = this.girl.images.bluredFace;
       } else {
         this.activeGirlImages = this.girl.images.active;
       }
+      this.activeGirlImages = this.activeGirlImages.slice(0, maxImages);
     }
   }
 }

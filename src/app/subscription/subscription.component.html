@@ -1,14 +1,14 @@
 <div *ngIf="user">
   <p-confirmPopup></p-confirmPopup>
   <p-toast></p-toast>
-<h2>{{ user.email }}</h2>
+  <h2>{{ user.email }}</h2>
   <div class="surface-card p-3 shadow-2 border-round my-3">
     <div class="text-3xl font-medium text-900 mb-2">Visibilidad del perfil</div>
     <div class="font-medium text-500 mb-3">
       La visibilidad del perfil es un parámetro que controla únicamente usted. No afecta a la suscripción activa ni a la congelación de la misma; es simplemente
       una herramienta por si necesita que su perfil no sea visible por motivos personales.
     </div>
-    <div class="flex align-items-center px-2 surface-border flex-wrap">
+    <div class="flex align-items-center px-2 surface-border flex-wrap z-5">
       <div class="flex align-items-center pr-5 w-6 md:w-2">
         <span class="pi pi-circle-fill pr-3" style="color: var(--green-500)" *ngIf="!user.girl.hiden"></span>
         <span class="pi pi-circle-fill pr-3" style="color: var(--red-700)" *ngIf="user.girl.hiden"></span>

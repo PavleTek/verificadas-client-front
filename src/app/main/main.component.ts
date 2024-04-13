@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
+import { RippleModule } from 'primeng/ripple';
 import { InputTextModule } from 'primeng/inputtext';
 import { StyleClassModule } from 'primeng/styleclass';
 import { HttpClientModule } from '@angular/common/http';
+import { ButtonModule } from 'primeng/button';
 import { MainService } from '../main.service';
 import { AuthService } from '../auth.service';
 import { InternalService } from '../internal.service';
@@ -14,7 +16,7 @@ import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HttpClientModule, DividerModule, FormsModule, StyleClassModule, InputTextModule],
+  imports: [CommonModule, RouterOutlet, ButtonModule, HttpClientModule, RippleModule, DividerModule, FormsModule, StyleClassModule, InputTextModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
