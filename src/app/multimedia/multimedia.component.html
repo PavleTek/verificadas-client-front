@@ -58,11 +58,9 @@
   </div>
   <ul class="list-none p-0 m-0" *ngIf="girl.images.request.length">
     <div class="grid" id="imageGridPending">
-      <div class="flex flex-column">
-        <div *ngFor="let image of girl.images.request; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6">
-          <div class="image-container" (click)="openImage(index, 'request')">
-            <img [src]="image" alt="image" class="grid-img" />
-          </div>
+      <div *ngFor="let image of girl.images.request; let index = index" class="xl:col-2 lg:col-3 md:col-4 sm:col-6 col-6">
+        <div class="image-container" (click)="openImage(index, 'request')">
+          <img [src]="image" alt="image" class="grid-img" />
         </div>
       </div>
     </div>
@@ -70,12 +68,20 @@
   <span class="text-500 w-6 md:w-2 py-2" *ngIf="!girl.images.request.length">No tiene imagenes pendientes de aprobación</span>
 </div>
 <div class="surface-card p-4 mt-4 shadow-2 border-round">
-  <h2 class="pr-3">Imagenes activas</h2>
+  <div class="flex flex-column align-items-start mb-2">
+    <h2 class="pr-3">Imagenes activas</h2>
+    <p-button label="Guardar imagen principal" icon="pi pi-save" (onClick)="saveActiveImagesOrder()"></p-button>
+  </div>
   <ul class="list-none p-0 m-0" *ngIf="girl.images.active.length">
     <div class="grid" id="imageGridActive">
-      <div *ngFor="let image of girl.images.active; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6">
-        <div class="image-container" (click)="openImage(index, 'active')">
-          <img [src]="image" alt="image" class="grid-img" />
+      <div *ngFor="let image of girl.images.active; let index = index" class="xl:col-2 lg:col-3 md:col-4 sm:col-6 col-6">
+        <div class="flex flex-column">
+          <div class="image-container" (click)="openImage(index, 'active')">
+            <img [src]="image" alt="image" class="grid-img" />
+          </div>
+          <div class="flex align-items-start justify-content-center">
+            <p-radioButton name="pizza" [value]="index" [(ngModel)]="gridDisplayImageIndex" class="pt-2 w-min"></p-radioButton>
+          </div>
         </div>
       </div>
     </div>

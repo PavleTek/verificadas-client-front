@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { FileUploadModule } from 'primeng/fileupload';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { GalleriaModule } from 'primeng/galleria';
 import { FileUploadHandlerEvent } from 'primeng/fileupload';
 
 import { paymentTierToMaxImagesMap } from '../consts';
 import { Girl } from '../types';
-import { getPendingImageUrlFromImageName } from '../helper-functions';
+import { formatGirlImagesToUrls, getPendingImageUrlFromImageName } from '../helper-functions';
 import { MessageService } from 'primeng/api';
 import { MainService } from '../main.service';
 import { InternalService } from '../internal.service';
@@ -17,7 +18,7 @@ import { InternalService } from '../internal.service';
 @Component({
   selector: 'app-multimedia',
   standalone: true,
-  imports: [FormsModule, CommonModule, ButtonModule, GalleriaModule, ToastModule, FileUploadModule],
+  imports: [FormsModule, CommonModule, RadioButtonModule, ButtonModule, GalleriaModule, ToastModule, FileUploadModule],
   providers: [MessageService],
   templateUrl: './multimedia.component.html',
   styleUrl: './multimedia.component.scss',
@@ -27,6 +28,7 @@ export class MultimediaComponent {
   @ViewChild('specificComponent') specificComponent: ElementRef | any;
 
   uploadedFiles: any[] = [];
+  gridDisplayImageIndex = 0;
   paymentTierToMaxImagesMap: any = paymentTierToMaxImagesMap;
   totalImages: number = 1;
   activeGaleriaImages: string[] = [];
@@ -136,6 +138,14 @@ export class MultimediaComponent {
       return true;
     }
     return false;
+  }
+
+  async saveActiveImagesOrder() {
+    const response = await this.mainService.setMainImage(this.gridDisplayImageIndex, this.girl.id);
+    if (response.status === 200) {
+      this.gridDisplayImageIndex = 0;
+      this.girl.images = formatGirlImagesToUrls(response.data);
+    }
   }
 
   isButtonOrAncestor(element: any): boolean {

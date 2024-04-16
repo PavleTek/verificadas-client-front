@@ -245,4 +245,15 @@ export class MainService {
       return error;
     }
   }
+
+  async setMainImage(mainIndex: number, girlid: number): Promise<any> {
+    try {
+      const payload = { mainImageIndex: mainIndex, girlId: girlid };
+      const response = await this.http.put(`${this.baseUrl}/multimedia-api/setMainImage`, payload).toPromise();
+      return response;
+    } catch (error) {
+      console.error(`Error while updating main image`, error);
+      return error;
+    }
+  }
 }
