@@ -7,5 +7,9 @@
 .body-contanier {
   max-width: 2000px;
   margin: 0 auto; /* Center the container horizontally */
-  padding: 0 20px; /* Add some padding for better readability */
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
