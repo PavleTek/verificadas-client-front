@@ -136,3 +136,43 @@
 .horizontal-screen-width {
   max-width: 100vw !important;
 }
+
+@media screen and (max-width: 420px) {
+  ::ng-deep .p-dialog .p-dialog-content {
+    padding: 0 1rem 2rem 1rem;
+
+    overflow-y: hidden;
+  }
+  ::ng-deep .p-dialog-draggable .p-dialog-header {
+    padding: 1.5rem 1rem;
+  }
+
+  ::ng-deep .p-datatable-table {
+    display: flex;
+    width: 100%;
+
+    & .p-datatable-thead > tr {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & .p-datatable-tbody > tr {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & .p-datatable-thead > tr > th {
+      width: 100% !important;
+      border: unset;
+      padding: 1.25rem 0;
+    }
+
+    & .p-text-container p-tag {
+      width: 100%;
+
+      & .p-tag {
+        width: 100%;
+      }
+    }
+  }
+}
