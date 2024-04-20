@@ -27,7 +27,7 @@
   <h2 class="pr-3">Foto de Perfil activa</h2>
   <ul class="list-none p-0 m-0" *ngIf="girl.profilePicture !== ''">
     <div class="grid" id="activeProfilePictureContainer">
-      <div class="col-2">
+      <div class="md:col-2">
         <div class="image-container" (click)="openImage(0, 'activeProfilePicture')">
           <img [src]="girl.profilePicture" alt="image" class="grid-img" />
         </div>

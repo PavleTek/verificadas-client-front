@@ -2,17 +2,21 @@
   <p-toast></p-toast>
   <div *ngIf="!createReview && !selectedClient">
     <h1>Reseñas de clientes</h1>
-    <div class="flex align-items-center mb-4">
-      <span class="pi pi-info-circle pr-2" [pTooltip]="searchTooltip"></span>
-      <div class="text-900 text-xl font-bold mr-4 white-space-nowrap">Buscar por numero telefonico</div>
-      <input
-        pInputText
-        class="text-900 text-xl"
-        [(ngModel)]="mainSearchInput"
-        placeholder="+56 9xxxxxxxx"
-        (keydown.enter)="searchForClientsWithPhonePrefix()"
-      />
-      <p-button icon="pi pi-search" class="pl-2" (onClick)="searchForClientsWithPhonePrefix()"></p-button>
+    <div class="flex flex-column sm:flex-row sm:align-items-center mb-4">
+      <div class="flex align-items-center">
+        <span class="pi pi-info-circle pr-2" [pTooltip]="searchTooltip"></span>
+        <div class="text-900 text-xl font-bold mr-4 white-space-nowrap">Buscar por numero telefonico</div>
+      </div>
+      <div>
+        <input
+          pInputText
+          class="text-900 text-xl"
+          [(ngModel)]="mainSearchInput"
+          placeholder="+56 9xxxxxxxx"
+          (keydown.enter)="searchForClientsWithPhonePrefix()"
+        />
+        <p-button icon="pi pi-search" class="pl-2" (onClick)="searchForClientsWithPhonePrefix()"></p-button>
+      </div>
     </div>
     <div *ngIf="!mainSearchTriggered" class="text-500">Porfavor ingresa un numero telefonico parcial o completo para comenzar a buscar</div>
     <div *ngIf="mainSearchTriggered">

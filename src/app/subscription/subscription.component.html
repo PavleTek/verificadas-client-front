@@ -8,7 +8,7 @@
       La visibilidad del perfil es un parámetro que controla únicamente usted. No afecta a la suscripción activa ni a la congelación de la misma; es simplemente
       una herramienta por si necesita que su perfil no sea visible por motivos personales.
     </div>
-    <div class="flex align-items-center px-2 surface-border flex-wrap z-5">
+    <div class="flex align-items-center px-2 surface-border gap-2 sm:gap-0 flex-wrap z-5">
       <div class="flex align-items-center pr-5 w-6 md:w-2">
         <span class="pi pi-circle-fill pr-3" style="color: var(--green-500)" *ngIf="!user.girl.hiden"></span>
         <span class="pi pi-circle-fill pr-3" style="color: var(--red-700)" *ngIf="user.girl.hiden"></span>
@@ -31,15 +31,15 @@
   <div class="surface-card p-3 shadow-2 border-round my-3">
     <div class="text-3xl font-medium text-900 mb-4">Cambio de contraseña</div>
     <div class="flex flex-column px-2 surface-border w-max">
-      <div class="flex justify-content-between align-items-center w-full pb-3">
+      <div class="flex justify-content-between sm:align-items-center w-full pb-3 flex-column gap-2 sm:gap-0 sm:flex-row">
         <div class="text-900 font-medium pr-3 white-space-nowrap">Contraseña Actual</div>
         <p-password [(ngModel)]="oldPassword" [toggleMask]="true" [feedback]="false"></p-password>
       </div>
-      <div class="flex justify-content-between align-items-center w-full pb-3">
+      <div class="flex justify-content-between sm:align-items-center w-full pb-3 flex-column gap-2 sm:gap-0 sm:flex-row">
         <div class="text-900 font-medium pr-3 white-space-nowrap">Nueva contraseña</div>
         <p-password [(ngModel)]="newPassword" [toggleMask]="true" [feedback]="false"></p-password>
       </div>
-      <div class="flex justify-content-between align-items-center w-full">
+      <div class="flex justify-content-between sm:align-items-center w-full pb-3 flex-column gap-2 sm:gap-0 sm:flex-row">
         <div class="text-900 font-medium pr-3 white-space-nowrap">Confirme contraseña</div>
         <p-password
           [(ngModel)]="confirmNewPassword"
@@ -77,11 +77,11 @@
     <div class="text-3xl font-medium text-900 mb-2">Fecha de expiracion de su subscripcion</div>
     <div class="font-medium text-500 mb-3">Esta fecha representa cuando vence su subscripcion a Verificadas.cl</div>
     <div style="height: min-content" class="">
-      <div class="flex px-2 text-lg pb-2">
+      <div class="flex sm:px-2 text-lg pb-4 sm:pb-2">
         <span class="text-900 font-bold pr-3">Fecha Expiracion: </span>
         <span>{{ formatDate(user.girl.subscription.expiryDate) }}</span>
       </div>
-      <div class="flex px-2 text-lg pb-2 align-items-center">
+      <div class="flex sm:px-2 text-lg pb-2 align-items-center">
         <span class="text-900 font-bold pr-3">Fecha Desactivacion: </span>
         <span>{{ formatDate(user.girl.subscription.deactivationDate) }}</span>
         <span class="pi pi-info-circle pl-2" [pTooltip]="deactivationDateTooltip"></span>
@@ -134,7 +134,7 @@
   </div>
   <div class="surface-card p-3 shadow-2 border-round" *ngIf="showCreatePause">
     <h3>Congelación:</h3>
-    <div class="flex align-items-center">
+    <div class="flex sm:align-items-center flex-column sm:gap-0 gap-2 sm:flex-row">
       <span class="text-900 font-bold pr-3">Desde: </span>
       <p-calendar
         (onSelect)="startDateChange($event)"

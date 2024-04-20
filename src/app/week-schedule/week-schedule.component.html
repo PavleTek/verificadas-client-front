@@ -1,42 +1,42 @@
 <div class="text-500 w-6 md:w-2 font-medium pb-2">Horario</div>
 <div class="grid">
   <div class="col-12">
-    <div class="flex-row surface-card p-3 m-1">
+    <div class="flex-row surface-card sm:p-3 m-1">
       <p-table [value]="schedule" [scrollable]="true">
         <ng-template pTemplate="header">
           <tr>
             <th style="width: calc(100% / 7)">
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <p-tag severity="Primary"><span class="text-xl">Lunes</span></p-tag>
               </div>
             </th>
             <th style="width: calc(100% / 7)">
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <p-tag severity="Primary"><span class="text-xl">Martes</span></p-tag>
               </div>
             </th>
             <th style="width: calc(100% / 7)">
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <p-tag severity="Primary"><span class="text-xl">Miercoles</span></p-tag>
               </div>
             </th>
             <th style="width: calc(100% / 7)">
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <p-tag severity="Primary"><span class="text-xl">Jueves</span></p-tag>
               </div>
             </th>
             <th style="width: calc(100% / 7)">
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <p-tag severity="Primary"><span class="text-xl">Viernes</span></p-tag>
               </div>
             </th>
             <th style="width: calc(100% / 7)">
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <p-tag severity="Primary"><span class="text-xl">Sabado</span></p-tag>
               </div>
             </th>
             <th style="width: calc(100% / 7)">
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <p-tag severity="Primary"><span class="text-xl">Domingo</span></p-tag>
               </div>
             </th>
@@ -45,7 +45,7 @@
         <ng-template pTemplate="body" let-scheduleRow>
           <tr pStyleClass="border-bottom-3">
             <td>
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <div class="tag" *ngIf="scheduleRow.monday">
                   <span class="text-base centered-multiline-text px-1" [ngClass]="getTextFromTimeBracket(scheduleRow.monday) === '24h' ? 'px-3 py-2' : ''">
                     {{ getTextFromTimeBracket(scheduleRow.monday) }}
@@ -54,7 +54,7 @@
               </div>
             </td>
             <td>
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <div class="tag" *ngIf="scheduleRow.tuesday">
                   <span class="text-base centered-multiline-text px-1" [ngClass]="getTextFromTimeBracket(scheduleRow.tuesday) === '24h' ? 'px-3 py-2' : ''">{{
                     getTextFromTimeBracket(scheduleRow.tuesday)
@@ -63,7 +63,7 @@
               </div>
             </td>
             <td>
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <div class="tag" *ngIf="scheduleRow.wednesday">
                   <span class="text-base centered-multiline-text px-1" [ngClass]="getTextFromTimeBracket(scheduleRow.wednesday) === '24h' ? 'px-3 py-2' : ''">{{
                     getTextFromTimeBracket(scheduleRow.wednesday)
@@ -72,7 +72,7 @@
               </div>
             </td>
             <td>
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <div class="tag" *ngIf="scheduleRow.thursday">
                   <span class="text-base centered-multiline-text px-1" [ngClass]="getTextFromTimeBracket(scheduleRow.thursday) === '24h' ? 'px-3 py-2' : ''">{{
                     getTextFromTimeBracket(scheduleRow.thursday)
@@ -81,7 +81,7 @@
               </div>
             </td>
             <td>
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <div class="tag" *ngIf="scheduleRow.friday">
                   <span class="text-base centered-multiline-text px-1" [ngClass]="getTextFromTimeBracket(scheduleRow.friday) === '24h' ? 'px-3 py-2' : ''">{{
                     getTextFromTimeBracket(scheduleRow.friday)
@@ -90,7 +90,7 @@
               </div>
             </td>
             <td>
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <div class="tag" *ngIf="scheduleRow.saturday">
                   <span class="text-base centered-multiline-text px-1" [ngClass]="getTextFromTimeBracket(scheduleRow.saturday) === '24h' ? 'px-3 py-2' : ''">{{
                     getTextFromTimeBracket(scheduleRow.saturday)
@@ -99,7 +99,7 @@
               </div>
             </td>
             <td>
-              <div class="center-container">
+              <div class="center-container p-text-container">
                 <div class="tag" *ngIf="scheduleRow.sunday">
                   <span class="text-base centered-multiline-text px-1" [ngClass]="getTextFromTimeBracket(scheduleRow.sunday) === '24h' ? 'px-3 py-2' : ''">{{
                     getTextFromTimeBracket(scheduleRow.sunday)

@@ -15,7 +15,7 @@
             </h1>
             <span class="text-700 text-base text-center">{{ girl.description }}</span>
           </div>
-          <div class="flex align-items-center gap-2 mt-1 mb-3">
+          <div class="flex align-items-center gap-2 mt-1 mb-3 justify-content-center md:justify-content-start flex-wrap md:flex-nowrap">
             <span class="text-700 text-base text-2xl text-center white-space-nowrap">{{ getAgeFromBday(girl.bday) }} Años</span>
             <p-divider layout="vertical"></p-divider>
             <div class="flex flex-nowrap align-items-end">
@@ -37,7 +37,7 @@
               <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
             </div>
           </div>
-          <div class="flex align-items-center gap-2">
+          <div class="flex align-items-center gap-2 flex-wrap md:flex-nowrap justify-content-center">
             <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="callGirl(girl)">
               <span class="pi pi-phone text-xl pr-1"></span><span>Llamar</span>
             </p-button>
@@ -55,8 +55,8 @@
               [(visible)]="priceDialogVisible"
               appendTo="body"
               [modal]="true"
-              [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
-              [style]="{ 'max-width': '80vw', 'min-width': '40vw' }"
+              [breakpoints]="{ '960px': '75vw', '640px': '80vw', '420px': '95vw' }"
+              [style]="{ 'min-width': '40vw' }"
             >
               <ng-template pTemplate="header">
                 <div class="flex align-items-center">
@@ -308,7 +308,7 @@
             </h1>
             <span class="text-700 text-base text-center">{{ girl.description }}</span>
           </div>
-          <div class="flex align-items-center gap-2 mt-1 mb-3">
+          <div class="flex align-items-center gap-2 mt-4 mb-6 md:mt-1 md:mb-3 justify-center md:justify-start flex-wrap md:flex-nowrap">
             <span class="text-700 text-base text-2xl text-center white-space-nowrap">{{ getAgeFromBday(girl.bday) }} Años</span>
             <p-divider layout="vertical"></p-divider>
             <div class="flex flex-nowrap align-items-end">
@@ -330,7 +330,7 @@
               <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
             </div>
           </div>
-          <div class="flex align-items-center gap-2">
+          <div class="flex align-items-center gap-2 flex-wrap md:flex-nowrap">
             <p-button pRipple [rounded]="true" [outlined]="true" size="large" (click)="callGirl(girl)">
               <span class="pi pi-phone text-xl pr-1"></span><span>Llamar</span>
             </p-button>

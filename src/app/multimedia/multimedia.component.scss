@@ -55,3 +55,38 @@
 .image-container:hover::before {
   opacity: 1; /* On hover, the overlay becomes visible */
 }
+
+@media screen and (max-width: 992px) {
+  p-fileupload.p-element {
+    width: 100%;
+  }
+
+  ::ng-deep .p-fileupload-row {
+    flex-direction: column;
+  }
+
+  ::ng-deep .p-fileupload-row > div {
+    width: 100%;
+  }
+
+  ::ng-deep .p-fileupload-row img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  ::ng-deep .p-fileupload-buttonbar {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+
+    & > .p-element {
+      width: 100%;
+
+      & button {
+        width: 100%;
+      }
+    }
+  }
+}

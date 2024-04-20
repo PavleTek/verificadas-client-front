@@ -213,17 +213,17 @@
             <span class="text-xl font-medium text-900">Ubicaciones</span>
           </div>
           <ul class="mt-4 list-none p-0 mx-0">
-            <li class="flex align-items-center py-3">
+            <li class="flex align-items-center py-3 flex-wrap row-gap-2 sm:row-gap-0">
               <span style="width: 1rem; height: 1rem" class="border-round bg-cyan-500 mr-3 flex-shrink-0"></span>
               <span class="text-xl font-medium text-90">Ciudad</span>
-              <div class="ml-auto">
+              <div class="ml-4 sm:ml-auto">
                 <p-dropdown [options]="allCities" [(ngModel)]="girl.city" placeholder="Seleccione ciudad" [editable]="true" optionLabel="name"></p-dropdown>
               </div>
             </li>
-            <li class="flex align-items-center pb-3">
+            <li class="flex align-items-center py-3 flex-wrap row-gap-2 sm:row-gap-0">
               <span style="width: 1rem; height: 1rem" class="border-round bg-indigo-500 mr-3 flex-shrink-0"></span>
               <span class="text-xl font-medium text-90">Ubicación Específica</span>
-              <div class="ml-auto">
+              <div class="ml-4 sm:ml-auto">
                 <p-dropdown
                   [options]="allSpecificLocations"
                   [(ngModel)]="girl.specificLocation"
@@ -262,17 +262,17 @@
             <span class="text-xl font-medium text-900">Fisico</span>
           </div>
           <ul class="mt-1 list-none p-0 mx-0">
-            <li class="flex align-items-center py-3">
+            <li class="flex align-items-center py-3 flex-wrap row-gap-2 sm:row-gap-0">
               <span style="width: 1rem; height: 1rem" class="border-round bg-cyan-500 mr-3 flex-shrink-0"></span>
               <span class="text-xl font-medium text-90">Cabello</span>
-              <div class="ml-auto">
+              <div class="ml-4 sm:ml-auto">
                 <p-dropdown [options]="hairColorOptions" [(ngModel)]="girl.attributes.hair" placeholder="Seleccione Cabello"></p-dropdown>
               </div>
             </li>
-            <li class="flex align-items-center pb-3">
+            <li class="flex align-items-center py-3 flex-wrap row-gap-2 sm:row-gap-0">
               <span style="width: 1rem; height: 1rem" class="border-round bg-indigo-500 mr-3 flex-shrink-0"></span>
               <span class="text-xl font-medium text-90">Depilación</span>
-              <div class="ml-auto">
+              <div class="ml-4 sm:ml-auto">
                 <p-dropdown [options]="shavingStatusOpptions" [(ngModel)]="girl.attributes.shaving" placeholder="Seleccione Depilacion"></p-dropdown>
               </div>
             </li>
@@ -456,7 +456,7 @@
                   <div class="flex justify-content-end" style="width: 100%">
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('monday', rowIndex)"></i>
                   </div>
-                  <div class="flex justify-content-between align-items-center pb-1">
+                  <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -469,7 +469,7 @@
                       ></p-dropdown>
                     </div>
                   </div>
-                  <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -501,7 +501,7 @@
                   <div class="flex justify-content-end" style="width: 100%">
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('tuesday', rowIndex)"></i>
                   </div>
-                  <div class="flex justify-content-between align-items-center pb-1">
+                  <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -514,7 +514,7 @@
                       ></p-dropdown>
                     </div>
                   </div>
-                  <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -546,7 +546,7 @@
                   <div class="flex justify-content-end" style="width: 100%">
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('wednesday', rowIndex)"></i>
                   </div>
-                  <div class="flex justify-content-between align-items-center pb-1">
+                  <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -559,7 +559,7 @@
                       ></p-dropdown>
                     </div>
                   </div>
-                  <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -591,7 +591,7 @@
                   <div class="flex justify-content-end" style="width: 100%">
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('thursday', rowIndex)"></i>
                   </div>
-                  <div class="flex justify-content-between align-items-center pb-1">
+                  <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -604,7 +604,7 @@
                       ></p-dropdown>
                     </div>
                   </div>
-                  <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -636,7 +636,7 @@
                   <div class="flex justify-content-end" style="width: 100%">
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('friday', rowIndex)"></i>
                   </div>
-                  <div class="flex justify-content-between align-items-center pb-1">
+                  <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -649,7 +649,7 @@
                       ></p-dropdown>
                     </div>
                   </div>
-                  <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -681,7 +681,7 @@
                   <div class="flex justify-content-end" style="width: 100%">
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('saturday', rowIndex)"></i>
                   </div>
-                  <div class="flex justify-content-between align-items-center pb-1">
+                  <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -694,7 +694,7 @@
                       ></p-dropdown>
                     </div>
                   </div>
-                  <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -726,7 +726,7 @@
                   <div class="flex justify-content-end" style="width: 100%">
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('sunday', rowIndex)"></i>
                   </div>
-                  <div class="flex justify-content-between align-items-center pb-1">
+                  <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
@@ -739,7 +739,7 @@
                       ></p-dropdown>
                     </div>
                   </div>
-                  <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
                     <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
                     <div style="max-width: 60%">
                       <p-dropdown
