@@ -13,6 +13,7 @@ interface Response {
   providedIn: 'root',
 })
 export class MainService {
+  private baseMultimediaUrl = environment.baseMultimediaUrl;
   private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient, private internalService: InternalService) {}
@@ -213,7 +214,7 @@ export class MainService {
       images.forEach((image) => {
         formData.append('images', image, image.name); // Make sure to include the file name
       });
-      const response = await this.http.post(`${this.baseUrl}/multimedia-api/request/${girlId}`, formData).toPromise();
+      const response = await this.http.post(`${this.baseMultimediaUrl}/multimedia-api/request/${girlId}`, formData).toPromise();
       return response;
     } catch (error) {
       console.error('Error while uploading images', error);
@@ -228,7 +229,7 @@ export class MainService {
       images.forEach((image) => {
         formData.append('images', image, image.name); // Make sure to include the file name
       });
-      const response = await this.http.post(`${this.baseUrl}/multimedia-api/profilePictureRequest/${girlId}`, formData).toPromise();
+      const response = await this.http.post(`${this.baseMultimediaUrl}/multimedia-api/profilePictureRequest/${girlId}`, formData).toPromise();
       return response;
     } catch (error) {
       console.error('Error while uploading profilePicture', error);
@@ -249,7 +250,7 @@ export class MainService {
   async setMainImage(mainIndex: number, girlid: number): Promise<any> {
     try {
       const payload = { mainImageIndex: mainIndex, girlId: girlid };
-      const response = await this.http.put(`${this.baseUrl}/multimedia-api/setMainImage`, payload).toPromise();
+      const response = await this.http.put(`${this.baseMultimediaUrl}/multimedia-api/setMainImage`, payload).toPromise();
       return response;
     } catch (error) {
       console.error(`Error while updating main image`, error);
