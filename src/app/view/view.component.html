@@ -1,7 +1,7 @@
 <ng-container *ngIf="girl !== undefined">
   <ng-container *ngIf="phoneView">
-    <section class="surface-section">
-      <div class="grid">
+    <section class="surface-section pt-4">
+      <div class="grid mr-0 ml-0">
         <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 flex flex-column align-items-center horizontal-screen-width">
           <ng-container *ngIf="girl.profilePicture !== ''">
             <img [src]="girl.profilePicture" alt="Image" class="w-19rem border-3 border-circle border-0 profile-picture" />
@@ -27,7 +27,9 @@
               <span class="text-700 text-base text-center text-2xl pr-1">{{ girl.weight }}</span>
               <span class="text-700 text-base text-center text-lg">Kg</span>
             </div>
-            <p-divider layout="vertical"></p-divider>
+            <div class="hidden sm:block">
+              <p-divider layout="vertical"></p-divider>
+            </div>
             <div class="flex flex-nowrap align-items-end">
               <span class="text-700 text-base text-center text-2xl">{{ girl.chestCm }}</span>
               <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
@@ -134,10 +136,10 @@
                 <div class="mb-2 mr-2">
                   <p-chip class="white-space-nowrap" *ngIf="checkIfServiceIsPaid(service.id)">
                     <i class="pi pi-dollar p-1" style="color: var(--yellow-600)" pTooltip="Este servicio tiene un costo adicional"></i>
-                    <span class="chip-text text-lg font-semibold pr-1" [pTooltip]="service.description">{{ service.name }}</span>
+                    <span class="chip-text font-semibold pr-1" [pTooltip]="service.description">{{ service.name }}</span>
                   </p-chip>
                   <p-chip class="white-space-nowrap" *ngIf="!checkIfServiceIsPaid(service.id)">
-                    <span class="chip-text text-lg font-semibold px-1" [pTooltip]="service.description">{{ service.name }}</span>
+                    <span class="chip-text font-semibold px-1" [pTooltip]="service.description">{{ service.name }}</span>
                   </p-chip>
                 </div>
               </div>
@@ -150,88 +152,88 @@
             <div class="services-container flex flex-wrap align-items-center justify-content-center">
               <div class="mb-2 mr-2">
                 <p-chip class="white-space-nowrap" *ngIf="girl.specificLocation && girl.specificLocation.name !== noDisplayValue">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.specificLocation.name }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.specificLocation.name }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2">
                 <p-chip class="white-space-nowrap" *ngIf="girl.nationality && girl.nationality.name !== noDisplayValue">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.nationality.name }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.nationality.name }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2">
                 <p-chip class="white-space-nowrap" *ngIf="girl.ethnicity && girl.ethnicity.name !== noDisplayValue">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.ethnicity.name }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.ethnicity.name }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.parking">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">Con estacionamiento</span>
+                  <span class="chip-text font-semibold px-1">Con estacionamiento</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.contexture !== ''">
                 <p-chip class="white-space-nowrap" *ngIf="girl.attributes.contexture">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.contexture }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.attributes.contexture }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.hair !== ''">
                 <p-chip class="white-space-nowrap" *ngIf="girl.attributes.hair">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.hair }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.attributes.hair }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.eyes !== ''">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.eyes }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.attributes.eyes }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.chestSize !== ''">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.chestSize }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.attributes.chestSize }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.bottomSize !== ''">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.bottomSize }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.attributes.bottomSize }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.shaving !== ''">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.shaving }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.attributes.shaving }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtHotels">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">Atencion en hoteles</span>
+                  <span class="chip-text font-semibold px-1">Atencion en hoteles</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtGirlPlace">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">Atencion en lugar propio</span>
+                  <span class="chip-text font-semibold px-1">Atencion en lugar propio</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtClientPlace">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">Atencion a domicilio</span>
+                  <span class="chip-text font-semibold px-1">Atencion a domicilio</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="!girl.attributes.smoking">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">No fuma</span>
+                  <span class="chip-text font-semibold px-1">No fuma</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="!girl.attributes.tatoos">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">Sin tatuajes</span>
+                  <span class="chip-text font-semibold px-1">Sin tatuajes</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.tatoos">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">Con tatuajes</span>
+                  <span class="chip-text font-semibold px-1">Con tatuajes</span>
                 </p-chip>
               </div>
               <div *ngFor="let language of girl.attributes.languages">
                 <div class="mb-2 mr-2">
                   <p-chip class="white-space-nowrap">
-                    <span class="chip-text text-lg font-semibold px-1">{{ language }}</span>
+                    <span class="chip-text font-semibold px-1">{{ language }}</span>
                   </p-chip>
                 </div>
               </div>
@@ -246,8 +248,8 @@
         </div>
         <div class="col-12 justify-content-center align-items-center">
           <div class="flex w-fill justify-content-center mt-5">
-            <div class="grid w-11" id="imageGridActive">
-              <div *ngFor="let image of activeGirlImages; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6 p-3">
+            <div class="grid w-11 grid-nogutter" id="imageGridActive">
+              <div *ngFor="let image of activeGirlImages; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6 p-1 lg:p-2">
                 <div class="image-container" (click)="openImage(index)">
                   <img [src]="image" alt="image" class="grid-img" />
                 </div>
@@ -275,7 +277,7 @@
     </section>
   </ng-container>
   <ng-container *ngIf="!phoneView">
-    <section class="surface-section">
+    <section class="surface-section pt-4">
       <div class="grid">
         <div class="sm:col-12 md:col-12 lg:col-4 xl:col-4 pt-6">
           <div class="flex-column services-container">
@@ -285,10 +287,10 @@
                 <div class="mb-2 mr-2">
                   <p-chip class="white-space-nowrap" *ngIf="checkIfServiceIsPaid(service.id)">
                     <i class="pi pi-dollar p-1" style="color: var(--yellow-600)" pTooltip="Este servicio tiene un costo adicional"></i>
-                    <span class="chip-text text-lg font-semibold pr-1" [pTooltip]="service.description">{{ service.name }}</span>
+                    <span class="chip-text font-semibold pr-1" [pTooltip]="service.description">{{ service.name }}</span>
                   </p-chip>
                   <p-chip class="white-space-nowrap" *ngIf="!checkIfServiceIsPaid(service.id)">
-                    <span class="chip-text text-lg font-semibold px-1" [pTooltip]="service.description">{{ service.name }}</span>
+                    <span class="chip-text font-semibold px-1" [pTooltip]="service.description">{{ service.name }}</span>
                   </p-chip>
                 </div>
               </div>
@@ -320,7 +322,9 @@
               <span class="text-700 text-base text-center text-2xl pr-1">{{ girl.weight }}</span>
               <span class="text-700 text-base text-center text-lg">Kg</span>
             </div>
-            <p-divider layout="vertical"></p-divider>
+            <div class="hidden sm:block">
+              <p-divider layout="vertical"></p-divider>
+            </div>
             <div class="flex flex-nowrap align-items-end">
               <span class="text-700 text-base text-center text-2xl">{{ girl.chestCm }}</span>
               <span class="text-700 text-base text-center text-lg pr-2">Cm</span>
@@ -425,88 +429,88 @@
             <div class="services-container flex flex-wrap align-items-center justify-content-center">
               <div class="mb-2 mr-2">
                 <p-chip class="white-space-nowrap" *ngIf="girl.specificLocation && girl.specificLocation.name !== noDisplayValue">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.specificLocation.name }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.specificLocation.name }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2">
                 <p-chip class="white-space-nowrap" *ngIf="girl.nationality && girl.nationality.name !== noDisplayValue">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.nationality.name }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.nationality.name }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2">
                 <p-chip class="white-space-nowrap" *ngIf="girl.ethnicity && girl.ethnicity.name !== noDisplayValue">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.ethnicity.name }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.ethnicity.name }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.parking">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">Con estacionamiento</span>
+                  <span class="chip-text font-semibold px-1">Con estacionamiento</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.contexture !== ''">
                 <p-chip class="white-space-nowrap" *ngIf="girl.attributes.contexture">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.contexture }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.attributes.contexture }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.hair !== ''">
                 <p-chip class="white-space-nowrap" *ngIf="girl.attributes.hair">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.hair }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.attributes.hair }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.eyes !== ''">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.eyes }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.attributes.eyes }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.chestSize !== ''">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.chestSize }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.attributes.chestSize }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.bottomSize !== ''">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.bottomSize }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.attributes.bottomSize }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.shaving !== ''">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">{{ girl.attributes.shaving }}</span>
+                  <span class="chip-text font-semibold px-1">{{ girl.attributes.shaving }}</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtHotels">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">Atencion en hoteles</span>
+                  <span class="chip-text font-semibold px-1">Atencion en hoteles</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtGirlPlace">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">Atencion en lugar propio</span>
+                  <span class="chip-text font-semibold px-1">Atencion en lugar propio</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.attentionAtClientPlace">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">Atencion a domicilio</span>
+                  <span class="chip-text font-semibold px-1">Atencion a domicilio</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="!girl.attributes.smoking">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">No fuma</span>
+                  <span class="chip-text font-semibold px-1">No fuma</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="!girl.attributes.tatoos">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">Sin tatuajes</span>
+                  <span class="chip-text font-semibold px-1">Sin tatuajes</span>
                 </p-chip>
               </div>
               <div class="mb-2 mr-2" *ngIf="girl.attributes.tatoos">
                 <p-chip class="white-space-nowrap">
-                  <span class="chip-text text-lg font-semibold px-1">Con tatuajes</span>
+                  <span class="chip-text font-semibold px-1">Con tatuajes</span>
                 </p-chip>
               </div>
               <div *ngFor="let language of girl.attributes.languages">
                 <div class="mb-2 mr-2">
                   <p-chip class="white-space-nowrap">
-                    <span class="chip-text text-lg font-semibold px-1">{{ language }}</span>
+                    <span class="chip-text font-semibold px-1">{{ language }}</span>
                   </p-chip>
                 </div>
               </div>
@@ -521,8 +525,8 @@
         </div>
         <div class="col-12 justify-content-center align-items-center">
           <div class="flex w-fill justify-content-center mt-5">
-            <div class="grid w-11" id="imageGridActive">
-              <div *ngFor="let image of activeGirlImages; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6 p-3">
+            <div class="grid w-11 grid-nogutter" id="imageGridActive">
+              <div *ngFor="let image of activeGirlImages; let index = index" class="xl:col-3 lg:col-3 md:col-4 sm:col-6 col-6 p-1 lg:p-2">
                 <div class="image-container" (click)="openImage(index)">
                   <img [src]="image" alt="image" class="grid-img" />
                 </div>
