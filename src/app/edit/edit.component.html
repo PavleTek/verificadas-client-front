@@ -411,37 +411,37 @@
       <p-table [value]="girl.schedule" [tableStyle]="{ 'min-width': '5rem' }">
         <ng-template pTemplate="header">
           <tr>
-            <th style="width: calc(100% / 7)">
+            <th style="width: calc(100% / 7); min-width: min-content">
               <div class="center-container">
                 <p-tag severity="Primary"><span class="text-xl">Lunes</span></p-tag>
               </div>
             </th>
-            <th style="width: calc(100% / 7)">
+            <th style="width: calc(100% / 7); min-width: min-content">
               <div class="center-container">
                 <p-tag severity="Primary"><span class="text-xl">Martes</span></p-tag>
               </div>
             </th>
-            <th style="width: calc(100% / 7)">
+            <th style="width: calc(100% / 7); min-width: min-content">
               <div class="center-container">
                 <p-tag severity="Primary"><span class="text-xl">Miercoles</span></p-tag>
               </div>
             </th>
-            <th style="width: calc(100% / 7)">
+            <th style="width: calc(100% / 7); min-width: min-content">
               <div class="center-container">
                 <p-tag severity="Primary"><span class="text-xl">Jueves</span></p-tag>
               </div>
             </th>
-            <th style="width: calc(100% / 7)">
+            <th style="width: calc(100% / 7); min-width: min-content">
               <div class="center-container">
                 <p-tag severity="Primary"><span class="text-xl">Viernes</span></p-tag>
               </div>
             </th>
-            <th style="width: calc(100% / 7)">
+            <th style="width: calc(100% / 7); min-width: min-content">
               <div class="center-container">
                 <p-tag severity="Primary"><span class="text-xl">Sabado</span></p-tag>
               </div>
             </th>
-            <th style="width: calc(100% / 7)">
+            <th style="width: calc(100% / 7); min-width: min-content">
               <div class="center-container">
                 <p-tag severity="Primary"><span class="text-xl">Domingo</span></p-tag>
               </div>
@@ -457,8 +457,8 @@
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('monday', rowIndex)"></i>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Desde: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.monday"
                         [(ngModel)]="scheduleRow.monday.startTime"
@@ -470,8 +470,8 @@
                     </div>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Hasta: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.monday"
                         [(ngModel)]="scheduleRow.monday.endTime"
@@ -502,8 +502,8 @@
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('tuesday', rowIndex)"></i>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Desde: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.tuesday"
                         [(ngModel)]="scheduleRow.tuesday.startTime"
@@ -515,8 +515,8 @@
                     </div>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Hasta: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.tuesday"
                         [(ngModel)]="scheduleRow.tuesday.endTime"
@@ -547,8 +547,8 @@
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('wednesday', rowIndex)"></i>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Desde: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.wednesday"
                         [(ngModel)]="scheduleRow.wednesday.startTime"
@@ -560,8 +560,8 @@
                     </div>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Hasta: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.wednesday"
                         [(ngModel)]="scheduleRow.wednesday.endTime"
@@ -592,8 +592,8 @@
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('thursday', rowIndex)"></i>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Desde: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.thursday"
                         [(ngModel)]="scheduleRow.thursday.startTime"
@@ -605,8 +605,8 @@
                     </div>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Hasta: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.thursday"
                         [(ngModel)]="scheduleRow.thursday.endTime"
@@ -637,8 +637,8 @@
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('friday', rowIndex)"></i>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Desde: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.friday"
                         [(ngModel)]="scheduleRow.friday.startTime"
@@ -650,8 +650,8 @@
                     </div>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Hasta: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.friday"
                         [(ngModel)]="scheduleRow.friday.endTime"
@@ -682,8 +682,8 @@
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('saturday', rowIndex)"></i>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Desde: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.saturday"
                         [(ngModel)]="scheduleRow.saturday.startTime"
@@ -695,8 +695,8 @@
                     </div>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Hasta: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.saturday"
                         [(ngModel)]="scheduleRow.saturday.endTime"
@@ -727,8 +727,8 @@
                     <i class="pi pi-times py-1 pointer-on-hover" style="color: white; font-size: 0.8rem" (click)="removeTimeBracket('sunday', rowIndex)"></i>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center pb-1 flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Desde: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Desde: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.sunday"
                         [(ngModel)]="scheduleRow.sunday.startTime"
@@ -740,8 +740,8 @@
                     </div>
                   </div>
                   <div class="flex justify-content-between sm:align-items-center flex-column sm:flex-row full-row">
-                    <span class="pr-2 text-lg" style="max-width: 40%">Hasta: </span>
-                    <div style="max-width: 60%">
+                    <span class="pr-2 text-base" style="max-width: 40%">Hasta: </span>
+                    <div style="min-width: 6rem">
                       <p-dropdown
                         [options]="allDaysTimeOptions.sunday"
                         [(ngModel)]="scheduleRow.sunday.endTime"
