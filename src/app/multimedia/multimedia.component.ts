@@ -28,6 +28,7 @@ export class MultimediaComponent {
   @ViewChild('specificComponent') specificComponent: ElementRef | any;
 
   uploadedFiles: any[] = [];
+  uploadedFilesPP: any[] = [];
   gridDisplayImageIndex = 0;
   paymentTierToMaxImagesMap: any = paymentTierToMaxImagesMap;
   totalImages: number = 1;
@@ -66,12 +67,21 @@ export class MultimediaComponent {
     });
   }
 
-  async onUploadPicture(event: FileUploadHandlerEvent) {
+  cleanProfilePictureFileUpload() {
+    this.uploadedFilesPP = [];
+  }
+
+  cleanImageRequestFileUpload() {
+    this.uploadedFiles = [];
+  }
+
+  async onUploadPicture(event: FileUploadHandlerEvent, form: any) {
     try {
       const uploadImagesResponse = await this.mainService.uploadImagesRequest(event.files, this.girl.id);
       if (uploadImagesResponse.status === 200) {
         this.girl.images = uploadImagesResponse.data;
         this.internalService.updateGirlAndFormateNewImages(this.girl);
+        form.clear();
         this.messageService.add({ severity: 'success', summary: 'Confirmado', detail: `Imagenes subidas con exito`, life: 3000 });
       } else {
         this.messageService.add({ severity: 'error', summary: 'Operacion rechazada', detail: 'Error subiendo imagenes', life: 3000 });
@@ -81,12 +91,13 @@ export class MultimediaComponent {
     }
   }
 
-  async onUploadProfilePicture(event: FileUploadHandlerEvent) {
+  async onUploadProfilePicture(event: FileUploadHandlerEvent, form: any) {
     try {
       const uploadProfilePictureResponse = await this.mainService.uploadProfilePictureRequest(event.files, this.girl.id);
       if (uploadProfilePictureResponse.status === 200) {
         this.girl.requestProfilePicture = getPendingImageUrlFromImageName(uploadProfilePictureResponse.data);
         this.internalService.updateGirl(this.girl);
+        form.clear();
         this.messageService.add({ severity: 'success', summary: 'Confirmado', detail: `Foto de perfil subida con exito`, life: 3000 });
       } else {
         this.messageService.add({ severity: 'error', summary: 'Operacion rechazada', detail: 'Error subiendo foto de perfil', life: 3000 });
