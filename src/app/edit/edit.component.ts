@@ -211,6 +211,7 @@ export class EditComponent {
 
   mapGirlToSqlAcceptedObject(girl: Girl) {
     girl.name = this.capitalizeEachWord(girl.name);
+    girl.phoneNumber = girl.phoneNumber.replace(/\D/g, '');
     const readyForBackEndObject: any = {
       ...girl,
     };

@@ -79,6 +79,7 @@ export class ViewComponent {
 
   whatsappGirl(girl: Girl) {
     const phoneNumber = girl.phoneNumber;
+    console.log(girl.phoneNumber);
     const message = `Hola ${girl.name}, he visto tu perfil en Verificadas.cl y me gustaria saber mas de ti!`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
