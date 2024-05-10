@@ -133,13 +133,20 @@
             <h2 class="text-center">Servicios</h2>
             <div class="services-container flex flex-wrap align-items-center justify-content-center">
               <div *ngFor="let service of girl.services">
+                <div class="mb-2 mr-2" *ngIf="!checkIfServiceIsPaid(service.id)">
+                  <p-chip class="white-space-nowrap">
+                    <span class="chip-text font-semibold px-1" [pTooltip]="service.description">{{ service.name }}</span>
+                  </p-chip>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-center">Servicios Pagados</h2>
+            <div class="services-container flex flex-wrap align-items-center justify-content-center">
+              <div *ngFor="let service of girl.paidServices">
                 <div class="mb-2 mr-2">
-                  <p-chip class="white-space-nowrap" *ngIf="checkIfServiceIsPaid(service.id)">
+                  <p-chip class="white-space-nowrap">
                     <i class="pi pi-dollar p-1" style="color: var(--yellow-600)" pTooltip="Este servicio tiene un costo adicional"></i>
                     <span class="chip-text font-semibold pr-1" [pTooltip]="service.description">{{ service.name }}</span>
-                  </p-chip>
-                  <p-chip class="white-space-nowrap" *ngIf="!checkIfServiceIsPaid(service.id)">
-                    <span class="chip-text font-semibold px-1" [pTooltip]="service.description">{{ service.name }}</span>
                   </p-chip>
                 </div>
               </div>
@@ -284,13 +291,20 @@
             <h2 class="text-center">Servicios</h2>
             <div class="services-container flex flex-wrap align-items-center justify-content-center">
               <div *ngFor="let service of girl.services">
+                <div class="mb-2 mr-2" *ngIf="!checkIfServiceIsPaid(service.id)">
+                  <p-chip class="white-space-nowrap">
+                    <span class="chip-text font-semibold px-1" [pTooltip]="service.description">{{ service.name }}</span>
+                  </p-chip>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-center">Servicios Pagados</h2>
+            <div class="services-container flex flex-wrap align-items-center justify-content-center">
+              <div *ngFor="let service of girl.paidServices">
                 <div class="mb-2 mr-2">
-                  <p-chip class="white-space-nowrap" *ngIf="checkIfServiceIsPaid(service.id)">
+                  <p-chip class="white-space-nowrap">
                     <i class="pi pi-dollar p-1" style="color: var(--yellow-600)" pTooltip="Este servicio tiene un costo adicional"></i>
                     <span class="chip-text font-semibold pr-1" [pTooltip]="service.description">{{ service.name }}</span>
-                  </p-chip>
-                  <p-chip class="white-space-nowrap" *ngIf="!checkIfServiceIsPaid(service.id)">
-                    <span class="chip-text font-semibold px-1" [pTooltip]="service.description">{{ service.name }}</span>
                   </p-chip>
                 </div>
               </div>
