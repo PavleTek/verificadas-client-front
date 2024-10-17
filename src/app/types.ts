@@ -1,8 +1,9 @@
+
 export type GirlUser = {
     id: number;
     email: string;
     password: string;
-    role: 'girl'; // Assuming 'role' can have other values, you can expand this type accordingly
+    role: 'girl'; 
     girlId: number;
     girl: Girl;
     welcomeMessage: string;
@@ -16,7 +17,7 @@ export type GirlUser = {
     id: number;
     email: string;
     password: string;
-    role: 'admin'; // Assuming 'role' can have other values, you can expand this type accordingly
+    role: 'admin'; 
     girlId?: number;
     girl?: Girl;
   };
@@ -37,53 +38,53 @@ export type GirlUser = {
   
   export type Girl = {
     id: number;
-    name: string; // added to html Done
-    bday: Date; //added to html Done
-    active: boolean; // for admin only MISSING
+    name: string;
+    bday: Date; 
+    active: boolean; 
     hiden: boolean;
-    bluredFace: boolean; // added to html Done
-    cityId?: number; // Not USED
+    bluredFace: boolean; 
+    cityId?: number;
     specificLocation: {
       id: number;
       name: string;
-    }; // added to html Done
-    phoneNumber: string; // added to html Done
-    description: string; //added to html Done
-    sessionPrices: PricesObject; // added to html Almost Done missing min-max
-    sessionPricesId?: number; // added to html Almost Done missing min-max
+    };
+    phoneNumber: string;
+    description: string; 
+    sessionPrices: PricesObject;
+    sessionPricesId?: number; 
     ethnicity: {
       id: number;
       name: string;
-    }; // added to html Done
-    height: number; // added to html Done
-    weight: number; // added to html Done
-    barbie: boolean;
-    chestCm: number; // added to html Done
-    waistCm: number; // added to html Done
-    bottomCm: number; // added to html Done
-    parking: boolean; // added to html Done
-    schedule: ScheduleRow[]; // added to html Missing Functionality
-    attributes: Attributes; // added to html Done
-    images: MultimediaObject; // added to html Missing Functionality
-    videos: MultimediaObject; // added to html Missing Functionality
+    };
+    height: number; 
+    weight: number; 
+    barbie: boolean
+    chestCm: number;
+    waistCm: number;
+    bottomCm: number;
+    parking: boolean;
+    schedule: ScheduleRow[]; 
+    attributes: Attributes; 
+    images: MultimediaObject; 
+    videos: MultimediaObject;
     requestProfilePicture?: string;
-    profilePicture: string; // added to html Missing Functionality
-    editLevel: string; // added to html Missing Functionality
+    profilePicture: string; 
+    editLevel: string; 
     nationality: {
       id: number;
       name: string;
-    }; // added to html Missing Functionality
-    categories: GirlCategory[]; // should only allow change of order
-    verificationId: number | null; // not going to be added for admin only
+    };
+    categories: GirlCategory[]; 
+    verificationId: number | null; 
     city: {
       id: number;
       name: string;
-    }; // added to html
-    services: any[]; // added to html
-    paidServices: any[]; // NEW ADDITION, these ones must be present in "services" but have to have a tooltip that they are extra
+    }; 
+    services: any[]; 
+    paidServices: any[]; 
     paymentTier: PaymentTier;
     subscription: Subscription;
-    verification: Verification; // not going to be added, for admin only
+    verification: Verification;
   };
   
   export type Attributes = {
@@ -92,13 +93,13 @@ export type GirlUser = {
     eyes: EyeColor;
     chestSize: ChestSize;
     bottomSize: BottomSize;
-    shaving: ShavingStatus; // shown
-    attentionAtHotels: boolean; // shown
-    attentionAtGirlPlace: boolean; // shown
-    attentionAtClientPlace: boolean; // shown
-    smoking: boolean; // shown
-    tatoos: boolean; // shown
-    languages: string[]; // shown
+    shaving: ShavingStatus; 
+    attentionAtHotels: boolean; 
+    attentionAtGirlPlace: boolean; 
+    attentionAtClientPlace: boolean; 
+    smoking: boolean; 
+    tatoos: boolean; 
+    languages: string[]; 
   };
   
   export type PricesObject = {
@@ -126,8 +127,8 @@ export type GirlUser = {
     availablePauses: number;
     pauseStartDate: Date | undefined;
     pauseEndDate: Date | undefined;
-    expiryDate: Date; // when subscription will expire
-    deactivationDate: Date; // when client will actually get deactivated | 3 days after expiry
+    expiryDate: Date;
+    deactivationDate: Date; 
   };
   
   export type SubscriptionPayment = {
@@ -198,17 +199,17 @@ export type GirlUser = {
   };
   
   export type Verification = {
-    id: number; // not editable
+    id: number; 
     carnetFrontal: string;
     carnetAtras: string;
-    status: VerificationStatus; // implmemented in verification page
-    name: string; // implemented in verification Page
-    lastname: string; // implmented in verifcation Page
-    bday: string; // implemented in verification Page
-    rut: string | null; // implemented In Verification Page
-    verificationDate: string | null; // backEnd Implementation
-    verifiedBy: number | null; // backEndImplementation
-    girlId: number; // not editable
+    status: VerificationStatus; 
+    name: string; 
+    lastname: string; 
+    bday: string; 
+    rut: string | null; 
+    verificationDate: string | null; 
+    verifiedBy: number | null; 
+    girlId: number; 
   };
   
   export type AppNotification = {
