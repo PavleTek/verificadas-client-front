@@ -8,7 +8,7 @@
             <i class="pi pi-pencil text-xl text-white"></i>
           </span>
           <div class="text-2xl font-medium text-white mb-2">Nombre</div>
-          <input type="text" [disabled]="true" class="text-900 font-medium mb-2 p-inputtext-sm" pInputText [(ngModel)]="girl.name" />
+          <input type="text" [disabled]="false" class="text-900 font-medium mb-2 p-inputtext-sm" pInputText [(ngModel)]="girl.name" />
         </div>
       </div>
       <div class="col-12 md:col-6 lg:col-3 p-3">
@@ -27,7 +27,7 @@
           </span>
           <div class="text-2xl font-medium text-white mb-2">Nacionalidad</div>
           <p-dropdown
-            [disabled]="true"
+            [disabled]="false"
             [options]="allNationalities"
             [(ngModel)]="girl.nationality"
             placeholder="Seleccione nacionalidad"
