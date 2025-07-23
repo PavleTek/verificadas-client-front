@@ -63,11 +63,9 @@ export class ViewComponent {
     this.breakpointObserver.observe([Breakpoints.Handset]).subscribe((result) => {
       if (result.matches) {
         // It's a phone
-        console.log('It is a phone');
         this.phoneView = true;
       } else {
         // It's not a phone
-        console.log('It is not a phone');
         this.phoneView = false;
       }
     });
@@ -79,7 +77,6 @@ export class ViewComponent {
 
   whatsappGirl(girl: Girl) {
     const phoneNumber = girl.phoneNumber;
-    console.log(girl.phoneNumber);
     const message = `Hola ${girl.name}, he visto tu perfil en Verificadas.cl y me gustaria saber mas de ti!`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
